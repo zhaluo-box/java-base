@@ -1,0 +1,43 @@
+package com.example.learn.chapter13.chapter09;
+
+import org.apache.commons.dbcp.BasicDataSource;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+
+public class TestDbcp {
+
+	public static void main(String[] args) throws Exception {
+		//创建数据源对象
+		BasicDataSource ds = new BasicDataSource();
+		//设置连接池所需要的驱动
+		ds.setDriverClassName("com.mysql.jdbc.Driver");
+		//设置数据库连接的URL、用户名、密码
+		ds.setUrl("jdbc:mysql://localhost:3306/mysql?characterEncoding=utf8&useSSL=true");
+		ds.setUsername("root");
+		ds.setPassword("12369");
+
+		//设置连接池的初始化参数
+		ds.setInitialSize(5);
+		ds.setMaxIdle(2); //空闲连接
+
+
+		//使用连接
+		Connection connection = ds.getConnection();
+		Statement stmt = connection.createStatement();
+		ResultSet rs = stmt.executeQuery("select * from  help_topic") ;
+		while (rs.next()) {
+			System.out.println(rs.getInt(1) + "\t" + rs.getString(2) + "\t" + rs.getString(3) + "\t" + rs.getString(4));
+
+		}
+
+
+
+		connection.close(); //归还连接，不真关闭
+
+
+	}
+
+}
