@@ -17,6 +17,8 @@
         <module>algorithm</module>
         <module>io</module>
         <module>java8</module>
+        <module>common</module>
+        <module>test</module>
     </modules>
 
     <properties>
