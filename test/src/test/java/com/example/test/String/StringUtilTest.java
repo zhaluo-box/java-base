@@ -26,4 +26,9 @@ public class StringUtilTest {
     public void chineseToPinYinFirstUp() throws BadHanyuPinyinOutputFormatCombination {
         System.out.println(StringUtil.chineseToPinYinFirstUp("万里长征人不还。"));
     }
+
+    @Test
+    public void generate(){
+        System.out.println(StringUtil.generateFields(13));
+    }
 }

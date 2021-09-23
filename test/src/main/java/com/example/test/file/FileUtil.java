@@ -7,7 +7,10 @@ import lombok.SneakyThrows;
 
 import java.io.*;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -15,6 +18,31 @@ import java.util.zip.ZipFile;
 public final class FileUtil {
 
     private static final String LINE_SEPARATOR = "\t";
+
+    public static void deleteFileDir(String path) {
+        var file = new File(path);
+        if (recursionDelete(file)) {
+            System.out.println(path + "文件已经删除!");
+        }
+    }
+
+    private static boolean recursionDelete(File file) {
+        if (file.isDirectory()) {
+            String[] children = file.list();
+            //递归删除目录中的子目录下
+            var files = file.listFiles();
+            for (File f : files) {
+                boolean success = recursionDelete(f);
+                if (!success) {
+                    return false;
+                }
+            }
+        }
+        // 目录此时为空，可以删除
+        boolean result = file.delete();
+        if (result) System.out.println(file.getAbsolutePath() + " 已删除");
+        return result;
+    }
 
     @SneakyThrows
     public static String unZip(String filePath, String descPath) {
@@ -56,7 +84,6 @@ public final class FileUtil {
 
     /**
      * 解析文件, 每列以”制表符“ 分割。
-     *
      */
     @SneakyThrows
     public static List<Map<String, Object>> parseFile(File file) {
@@ -80,6 +107,30 @@ public final class FileUtil {
             result.add(rowMap);
         }
         return result;
+    }
+
+    @SneakyThrows
+    public static List<Map<String, Object>> parse(String path) {
+        //        var type = variables.get(Constant.CATALOGUE_NUM);
+        //        var fieldSize = LIST_COLUMN_SIZE_MAP.get(type);
+        // 动态生成字段名
+        var fieldSize = 102;
+        var titles = generateFields(102);
+        // 字符集, 默认字符集GBK, 界面有配置优先界面配置的字符集
+        //        var configCharset = variables.get(CHARSET);
+        //        var charsetName = StringUtils.hasLength(configCharset) ? configCharset : DEFAULT_CHARSET_FOR_GBK;
+        @Cleanup var lines = Files.lines(Path.of(path), Charset.forName("GBK"));
+        return lines.map(line -> {
+            var rowMap = new HashMap<String, Object>(fieldSize);
+            var rowData = line.split(LINE_SEPARATOR);
+            if (rowData.length > fieldSize) {
+                System.out.println("单行解析出来的字段个数多余数据库配置的字段个数, 行号:" + "rowNum" + " 数据库字段个数:  " + fieldSize + " 单行解析个数 : " + rowData.length);
+            }
+            for (int i = 0; i < rowData.length; i++) {
+                rowMap.put(titles[i].trim(), rowData[i]);
+            }
+            return rowMap;
+        }).collect(Collectors.toList());
     }
 
     /**

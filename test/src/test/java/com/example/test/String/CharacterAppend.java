@@ -11,6 +11,12 @@ public class CharacterAppend {
         appendAndToString(92, 10);
     }
 
+    @Test
+    public void test() {
+        System.out.println("0".repeat(1) + "x");
+        System.out.println(Arrays.toString(generateFields(7)));
+    }
+
     private void appendAndToString(int i, int len) {
         int offset = i % len;
         int x = i / len;
@@ -40,12 +46,7 @@ public class CharacterAppend {
     }
 
 
-    @Test
-    public void test() {
-        System.out.println("0".repeat(1) + "x");
 
-        System.out.println(Arrays.toString(generateFields(7)));
-    }
 
 
 

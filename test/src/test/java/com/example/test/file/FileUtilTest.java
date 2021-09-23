@@ -9,13 +9,20 @@ public class FileUtilTest {
 
     @Test
     public void parseFileTest() {
-
-        var testFile = new File("C:\\testDir\\ZLXM_19000101000000.txt");
-        var result = FileUtil.parseFile(testFile);
+        var path = "C:\\testDir\\ZLXM_19000101000000.txt";
+        var testFile = new File(path);
+        //        var result = FileUtil.parseFile(testFile);
+        var result = FileUtil.parse(path);
         Collections.reverse(result);
         result.stream().limit(10).forEach(c -> {
-            System.out.println(c.toString());
+            System.out.println(c.keySet().size());
+            System.out.println(c);
         });
+    }
+
+    @Test
+    public void delete() {
+        FileUtil.deleteFileDir("C:\\testDir\\out - 副本");
     }
 
 }
