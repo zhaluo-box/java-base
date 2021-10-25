@@ -9,13 +9,17 @@ public class MapTest {
     @Test
     public void putAllTest() {
         var map = new HashMap<String, String>();
-        map.put("aaa",null);
+        map.put("aaa", null);
         System.out.println(map);
         var map2 = new HashMap<String, String>();
-        map2.put("aaa","123");
-        map2.put("bbb","123");
+        map2.put("aaa", "123");
+        map2.put("bbb", "123");
         System.out.println(map2);
         map.putAll(map2);
         System.out.println(map);
+    }
+
+    public void test() {
+        System.out.println("log4");
     }
 }
