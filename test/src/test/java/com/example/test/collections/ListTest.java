@@ -10,13 +10,13 @@ import java.util.List;
 
 /**
  * list 测试
- *
+ * <p>
  * list 交集并集差集的一个测试
- *
- *      list1 = 1,2,3,4,5,6
- *      list2 = 4,5,6,7,8,9
- *
- *      (1,2,3, (4,5,6,) 7,8,9)
+ * <p>
+ * list1 = 1,2,3,4,5,6
+ * list2 = 4,5,6,7,8,9
+ * <p>
+ * (1,2,3, (4,5,6,) 7,8,9)
  **/
 public class ListTest {
 
@@ -85,5 +85,9 @@ public class ListTest {
 
         System.out.println(list1);
         System.out.println(list2);
+    }
+
+    public void test() {
+        System.out.println("测试git");
     }
 }
