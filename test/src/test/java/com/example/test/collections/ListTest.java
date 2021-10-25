@@ -90,4 +90,8 @@ public class ListTest {
     public void test() {
         System.out.println("测试git");
     }
+
+    public void test2(){
+        System.out.println("测试回退!");
+    }
 }
