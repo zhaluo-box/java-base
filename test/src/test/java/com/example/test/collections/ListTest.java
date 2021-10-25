@@ -91,11 +91,15 @@ public class ListTest {
         System.out.println("测试git");
     }
 
-    public void test2(){
+    public void test2() {
         System.out.println("测试回退!");
     }
 
-    public void test3(){
+    public void test3() {
         System.out.println("12313");
+    }
+
+    public void test4() {
+        System.out.println("12131");
     }
 }
