@@ -1,4 +1,4 @@
-package com.example.test.Collects;
+package com.example.test.collections;
 
 import org.junit.Test;
 
@@ -42,5 +42,9 @@ public class MapTest {
         var list = new ArrayList<Map<String, Object>>();
 
         System.out.println(map);
+    }
+
+    public void test() {
+        System.out.println("log4");
     }
 }

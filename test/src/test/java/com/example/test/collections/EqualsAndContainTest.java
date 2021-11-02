@@ -1,4 +1,4 @@
-package com.example.test.Collects;
+package com.example.test.collections;
 
 import com.example.test.entity.Student;
 import com.example.test.entity.User;
