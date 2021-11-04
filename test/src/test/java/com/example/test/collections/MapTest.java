@@ -1,12 +1,11 @@
 package com.example.test.collections;
 
 import org.junit.Test;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class MapTest {
 
@@ -46,5 +45,28 @@ public class MapTest {
 
     public void test() {
         System.out.println("log4");
+    }
+
+    private Map<String, Object> toLowerCaseKey(Map<String, Object> data) {
+
+        if (CollectionUtils.isEmpty(data)) {
+            return data;
+        }
+
+        var result = new HashMap<String, Object>(data.size());
+        data.forEach((k, v) -> result.put(k.toLowerCase(), v));
+        return result;
+    }
+
+    @Test
+    public void testLowerCase() {
+        var map = new HashMap<String, Object>();
+        map.put("PATIENT_ID", "123");
+        map.put("VISIT_ID", 1);
+
+        System.out.println(map);
+
+        System.out.println(toLowerCaseKey(map));
+
     }
 }
