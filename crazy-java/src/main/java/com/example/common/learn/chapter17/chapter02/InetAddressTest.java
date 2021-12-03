@@ -1,6 +1,6 @@
-package chapter17_02_Java的基本网络支持;
+package com.example.common.learn.chapter17.chapter02;
 
-import java.net.*;
+import java.net.InetAddress;
 
 /**
  * Description: <br/>

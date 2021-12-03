@@ -1,4 +1,4 @@
-package chapter06_10_对象与垃圾回收;
+package com.example.common.learn.chapter06.chapter06_10_对象与垃圾回收;
 
 /**
  * Description: <br/>

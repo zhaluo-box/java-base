@@ -4,8 +4,6 @@ import com.example.test.string.StringUtil;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * Created  on 2021/9/22 14:14:46
  */
@@ -28,7 +26,12 @@ public class StringUtilTest {
     }
 
     @Test
-    public void generate(){
+    public void generate() {
         System.out.println(StringUtil.generateFields(13));
+    }
+
+    @Test
+    public void testStrCode() {
+        System.out.println("汉字");
     }
 }

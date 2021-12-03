@@ -1,4 +1,4 @@
-package com.zhaluobox.crazyjava.第18章类加载机制与反射.chapter18_01_类的加载_连接和初始化;
+package com.example.learn.chapter18.chapter01;
 
 /**
  * Description:

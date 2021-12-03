@@ -1,4 +1,4 @@
-package chapter06_02_处理对象;
+package com.example.common.learn.chapter06.chapter06_02_处理对象;
 
 
 

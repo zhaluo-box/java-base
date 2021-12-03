@@ -1,4 +1,4 @@
-package com.example.juc.learn.sgg.juc;
+package com.example.common.juc.learn.sgg.juc;
 
 
 import java.time.Duration;
