@@ -1,7 +1,6 @@
-import com.example.learn.pattern.builder.BenzBuilder;
-import com.example.learn.pattern.builder.BenzModel;
-import com.example.learn.pattern.builder.BwmBuilder;
-import com.example.learn.pattern.builder.CarBuilder;
+import com.example.learn.pattern.creational.builder.BenzBuilder;
+import com.example.learn.pattern.creational.builder.BenzModel;
+import com.example.learn.pattern.creational.builder.BwmBuilder;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.zhaluobox.crazyjava.chapter15.practice;
+package com.example.learn.chapter15.practice;
 
 import java.io.*;
 
