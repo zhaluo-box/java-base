@@ -1,22 +1,25 @@
 package com.example.juc.learn.sgg.juc;
 
+import com.example.common.juc.learn.sgg.juc.Clerk;
+import com.example.common.juc.learn.sgg.juc.Productor;
+
 /*
  * 生产者和消费者案例
  */
 public class TestProductorAndConsumer {
 
-	public static void main(String[] args) {
-		Clerk clerk = new Clerk();
+    public static void main(String[] args) {
+        Clerk clerk = new Clerk();
 
-		Productor pro = new Productor(clerk);
-		Consumer cus = new Consumer(clerk);
+        Productor pro = new Productor(clerk);
+        Consumer cus = new Consumer(clerk);
 
-		new Thread(pro, "生产者 A").start();
-		new Thread(cus, "消费者 B").start();
+        new Thread(pro, "生产者 A").start();
+        new Thread(cus, "消费者 B").start();
 
-		new Thread(pro, "生产者 C").start();
-		new Thread(cus, "消费者 D").start();
-	}
+        new Thread(pro, "生产者 C").start();
+        new Thread(cus, "消费者 D").start();
+    }
 
 }
 
