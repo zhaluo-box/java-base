@@ -1,21 +1,23 @@
 package com.example.learn.pattern.behavior.observe.chapter2;
 
 import java.util.List;
-import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 
 /**
  * 事件总线
  */
 public class EventBus {
 
-    private Executor executor;
+    private ExecutorService executor;
 
     private ObserverRegistry registry = new ObserverRegistry();
 
     public EventBus() {
     }
 
-    protected EventBus(Executor executor) {
+    protected EventBus(ExecutorService executor) {
         this.executor = executor;
     }
 
@@ -36,9 +38,15 @@ public class EventBus {
             if (executor == null) {
                 observerAction.execute(event);
             } else {
-                executor.execute(() -> {
+                Future<?> future = executor.submit(() -> {
+                    System.out.println("异步处理事件");
                     observerAction.execute(event);
                 });
+                try {
+                    future.get();
+                } catch (InterruptedException | ExecutionException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
