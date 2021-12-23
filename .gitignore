@@ -9,7 +9,7 @@
 *.class
 
 # Log file
-*.log
+#*.log
 
 # BlueJ files
 *.ctxt
