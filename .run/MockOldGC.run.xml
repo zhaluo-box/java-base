@@ -2,7 +2,7 @@
   <configuration default="false" name="MockOldGC" type="Application" factoryName="Application" nameIsGenerated="true">
     <option name="MAIN_CLASS_NAME" value="com.example.common.jvm.learn.chaper01.MockOldGC" />
     <module name="jvm" />
-    <option name="VM_PARAMETERS" value="-XX:NewSize=10485760 -XX:MaxNewSize=10485760 -XX:InitialHeapSize=20971520 -XX:MaxHeapSize=20971520 -XX:SurvivorRatio=8  -XX:MaxTenuringThreshold=15 -XX:PretenureSizeThreshold=10485760 -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:gc-mock-old.log" />
+    <option name="VM_PARAMETERS" value="-XX:NewSize=10485760 -XX:MaxNewSize=10485760 -XX:InitialHeapSize=20971520 -XX:MaxHeapSize=20971520 -XX:SurvivorRatio=8  -XX:MaxTenuringThreshold=15 -XX:PretenureSizeThreshold=5242880 -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:gc-mock-old.log" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="com.example.common.jvm.learn.chaper01.*" />
