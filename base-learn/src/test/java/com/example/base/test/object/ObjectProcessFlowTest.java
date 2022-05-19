@@ -4,15 +4,12 @@ import com.example.base.learn.object.OrdinaryObjectProcessFlow;
 import com.example.base.learn.object.SubObjectProcessFlow;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
+ * 测试类的加载顺序
  * Created  on 2022/3/17 11:11:55
  *
  * @author zl
  */
-
 public class ObjectProcessFlowTest {
 
     /**
@@ -28,10 +25,4 @@ public class ObjectProcessFlowTest {
         SubObjectProcessFlow subObjectProcessFlow = new SubObjectProcessFlow();
     }
 
-
-    @Test
-    public void arrtest(){
-        List<String> stringList = new ArrayList<>();
-        stringList.forEach(System.out::println);
-    }
 }

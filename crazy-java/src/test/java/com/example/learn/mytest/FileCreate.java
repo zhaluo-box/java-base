@@ -8,7 +8,7 @@ public class FileCreate {
     public static void main(String[] args) throws IOException {
         final File file = new File("/ora/aaa/aaa.txt");
 
-        if(!file.exists()){
+        if (!file.exists()) {
             final File parentFile = file.getParentFile();
             if (!parentFile.exists()) {
                 parentFile.mkdirs();
