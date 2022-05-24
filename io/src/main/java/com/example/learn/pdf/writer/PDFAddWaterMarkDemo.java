@@ -46,8 +46,8 @@ public class PDFAddWaterMarkDemo {
 
             PdfGState gs = new PdfGState();
             // 设置透明度
-            gs.setFillOpacity(0.1f);
-            gs.setStrokeOpacity(0.1f);
+            gs.setFillOpacity(0.3f);
+            gs.setStrokeOpacity(0.3f);
 
             int totalPage = reader.getNumberOfPages() + 1;
             for (int i = 1; i < totalPage; i++) {
@@ -65,7 +65,7 @@ public class PDFAddWaterMarkDemo {
                 // 添加范围
                 //                content.setTextMatrix(100, 100);
                 // 具体位置 内容 旋转多少度 共360度
-                content.showTextAligned(Element.ALIGN_LEFT, "KZH-2020522-1", 10, 10, 0);
+                content.showTextAligned(Element.ALIGN_LEFT, "KZH-2020522-1", 300, 300, 45);
                 //                content.showTextAligned(Element.ALIGN_CENTER, "机密文件", 10, 10, 0);
                 //                content.showTextAligned(Element.ALIGN_BOTTOM, "机密文件", 10, 10, 0);
 
