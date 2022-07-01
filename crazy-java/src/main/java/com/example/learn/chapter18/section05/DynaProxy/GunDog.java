@@ -1,5 +1,4 @@
-package com.zhaluobox.crazyjava.chapter18.section05.DynaProxy;
-
+package com.example.learn.chapter18.section05.DynaProxy;
 
 public class GunDog implements Dog {
     // 实现info()方法，仅仅打印一个字符串

@@ -1,6 +1,7 @@
-package com.zhaluobox.crazyjava.chapter15.chapter15_08_对象序列化;
+package com.example.learn.chapter15.chapter15_08_对象序列化;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 
 /**
  * Description: 反序列化时，必须有序列化对象的class文件，版本一致。<br/>
@@ -14,15 +15,14 @@ import java.io.*;
  * @version 1.0
  */
 public class ReadObject {
-	public static void main(String[] args) {
-		try (
-				// 创建一个ObjectInputStream输入流
-				ObjectInputStream ois = new ObjectInputStream(new FileInputStream("object.txt"))) {
-			// 从输入流中读取一个Java对象，并将其强制类型转换为Person类
-			Person p = (Person) ois.readObject();
-			System.out.println("名字为：" + p.getName() + "\n年龄为：" + p.getAge());
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-	}
+    public static void main(String[] args) {
+        // 创建一个ObjectInputStream输入流
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("object.txt"))) {
+            // 从输入流中读取一个Java对象，并将其强制类型转换为Person类
+            Person p = (Person) ois.readObject();
+            System.out.println("名字为：" + p.getName() + "\n年龄为：" + p.getAge());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 }

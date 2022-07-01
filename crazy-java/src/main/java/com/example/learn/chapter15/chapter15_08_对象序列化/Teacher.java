@@ -1,4 +1,4 @@
-package com.zhaluobox.crazyjava.chapter15.chapter15_08_对象序列化;
+package com.example.learn.chapter15.chapter15_08_对象序列化;
 
 /**
  * Description: <br/>
@@ -12,29 +12,30 @@ package com.zhaluobox.crazyjava.chapter15.chapter15_08_对象序列化;
  * @version 1.0
  */
 public class Teacher implements java.io.Serializable {
-	private String name;
-	private Person student;
+    private String name;
 
-	public Teacher(String name, Person student) {
-		this.name = name;
-		this.student = student;
-	}
+    private Person student;
 
-	// name的setter和getter方法
-	public void setName(String name) {
-		this.name = name;
-	}
+    public Teacher(String name, Person student) {
+        this.name = name;
+        this.student = student;
+    }
 
-	public String getName() {
-		return this.name;
-	}
+    // name的setter和getter方法
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	// student的setter和getter方法
-	public void setStudent(Person student) {
-		this.student = student;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	public Person getStudent() {
-		return this.student;
-	}
+    // student的setter和getter方法
+    public void setStudent(Person student) {
+        this.student = student;
+    }
+
+    public Person getStudent() {
+        return this.student;
+    }
 }

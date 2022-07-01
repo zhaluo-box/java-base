@@ -1,4 +1,4 @@
-package com.zhaluobox.crazyjava.chapter15.chapter15_10_Java7的NIO2;
+package com.example.learn.chapter15.chapter15_10_Java7的NIO2;
 
 import java.nio.file.*;
 
@@ -14,27 +14,28 @@ import java.nio.file.*;
  * @version 1.0
  */
 public class WatchServiceTest {
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 
-		// 获取文件系统的WatchService对象
-		WatchService watchService = FileSystems.getDefault().newWatchService();
+        // 获取文件系统的WatchService对象
+        WatchService watchService = FileSystems.getDefault().newWatchService();
 
-		// 为C:盘根路径注册监听
-		Paths.get("C:/").register(watchService, StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_MODIFY, StandardWatchEventKinds.ENTRY_DELETE);
+        // 为C:盘根路径注册监听
+        Paths.get("C:/")
+             .register(watchService, StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_MODIFY, StandardWatchEventKinds.ENTRY_DELETE);
 
-		while (true) {
-			// 获取下一个文件改动事件
-			WatchKey key = watchService.take(); // ①阻塞。不阻塞使用poll,如果没有返回null
+        while (true) {
+            // 获取下一个文件改动事件
+            WatchKey key = watchService.take(); // ①阻塞。不阻塞使用poll,如果没有返回null
 
-			for (WatchEvent<?> event : key.pollEvents()) {
-				System.out.println(event.context() + " 文件发生了 " + event.kind() + "事件！");
-			}
-			// 重设WatchKey
-			boolean valid = key.reset();
-			// 如果重设失败，退出监听
-			if (!valid) {
-				break;
-			}
-		}
-	}
+            for (WatchEvent<?> event : key.pollEvents()) {
+                System.out.println(event.context() + " 文件发生了 " + event.kind() + "事件！");
+            }
+            // 重设WatchKey
+            boolean valid = key.reset();
+            // 如果重设失败，退出监听
+            if (!valid) {
+                break;
+            }
+        }
+    }
 }

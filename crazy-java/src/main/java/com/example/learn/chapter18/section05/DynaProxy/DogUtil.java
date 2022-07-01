@@ -1,5 +1,4 @@
-package com.zhaluobox.crazyjava.chapter18.section05.DynaProxy;
-
+package com.example.learn.chapter18.section05.DynaProxy;
 
 public class DogUtil {
     // 第一个拦截器方法

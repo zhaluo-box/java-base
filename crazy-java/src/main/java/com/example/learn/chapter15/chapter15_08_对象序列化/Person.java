@@ -1,4 +1,4 @@
-package com.zhaluobox.crazyjava.chapter15.chapter15_08_对象序列化;
+package com.example.learn.chapter15.chapter15_08_对象序列化;
 
 /**
  * Description: <br/>
@@ -12,32 +12,33 @@ package com.zhaluobox.crazyjava.chapter15.chapter15_08_对象序列化;
  * @version 1.0
  */
 public class Person implements java.io.Serializable {
-	private String name;
-	private int age;
+    private String name;
 
-	// 注意此处没有提供无参数的构造器!
-	public Person(String name, int age) {
-		System.out.println("有参数的构造器");
-		this.name = name;
-		this.age = age;
-	}
-	// 省略name与age的setter和getter方法
+    private int age;
 
-	// name的setter和getter方法
-	public void setName(String name) {
-		this.name = name;
-	}
+    // 注意此处没有提供无参数的构造器!
+    public Person(String name, int age) {
+        System.out.println("有参数的构造器");
+        this.name = name;
+        this.age = age;
+    }
+    // 省略name与age的setter和getter方法
 
-	public String getName() {
-		return this.name;
-	}
+    // name的setter和getter方法
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	// age的setter和getter方法
-	public void setAge(int age) {
-		this.age = age;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	public int getAge() {
-		return this.age;
-	}
+    // age的setter和getter方法
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getAge() {
+        return this.age;
+    }
 }

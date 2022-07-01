@@ -1,18 +1,9 @@
-package com.zhaluobox.crazyjava.chapter18.chapter18_05_使用反射生成JDK动态代理;
+package com.example.learn.chapter18.chapter05;
 
-import java.lang.reflect.*;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
-/**
- * Description:
- * <br/>网站: <a href="http://www.crazyit.org">疯狂Java联盟</a>
- * <br/>Copyright (C), 2001-2016, Yeeku.H.Lee
- * <br/>This program is protected by copyright laws.
- * <br/>Program Name:
- * <br/>Date:
- *
- * @author Yeeku.H.Lee kongyeeku@163.com
- * @version 1.0
- */
 interface Person {
     void walk();
 
@@ -42,13 +33,11 @@ class MyInvokationHandler implements InvocationHandler {
 }
 
 public class ProxyTest {
-    public static void main(String[] args)
-            throws Exception {
+    public static void main(String[] args) throws Exception {
         // 创建一个InvocationHandler对象
         InvocationHandler handler = new MyInvokationHandler();
         // 使用指定的InvocationHandler来生成一个动态代理对象
-        Person p = (Person) Proxy.newProxyInstance(Person.class.getClassLoader()
-                , new Class[]{Person.class}, handler);
+        Person p = (Person) Proxy.newProxyInstance(Person.class.getClassLoader(), new Class[] { Person.class }, handler);
         // 调用动态代理对象的walk()和sayHello()方法
         p.walk();
         p.sayHello("孙悟空");

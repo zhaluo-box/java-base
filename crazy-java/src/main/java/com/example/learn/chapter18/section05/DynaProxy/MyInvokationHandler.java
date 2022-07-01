@@ -1,8 +1,7 @@
-package com.zhaluobox.crazyjava.chapter18.section05.DynaProxy;
+package com.example.learn.chapter18.section05.DynaProxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
-
 
 public class MyInvokationHandler implements InvocationHandler {
 

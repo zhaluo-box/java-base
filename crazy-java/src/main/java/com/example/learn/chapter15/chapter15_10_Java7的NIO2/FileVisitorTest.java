@@ -1,8 +1,8 @@
-package com.zhaluobox.crazyjava.chapter15.chapter15_10_Java7的NIO2;
+package com.example.learn.chapter15.chapter15_10_Java7的NIO2;
 
-import java.io.*;
+import java.io.IOException;
 import java.nio.file.*;
-import java.nio.file.attribute.*;
+import java.nio.file.attribute.BasicFileAttributes;
 
 /**
  * Description: 遍历文件和目录。<br/>
@@ -16,32 +16,30 @@ import java.nio.file.attribute.*;
  * @version 1.0
  */
 public class FileVisitorTest {
-	public static void main(String[] args) throws Exception {
-		// 遍历g:\publish\codes\15目录下的所有文件和子目录
-		Path path = Files.walkFileTree(Paths.get("F:", "workspace","01","疯狂Java讲义（第3版）","第15章输入_输出"), new SimpleFileVisitor<Path>() {
-			// 访问文件时候触发该方法
-			@Override
-			public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-				System.err.println("正在访问文件：" + file + "文件");
-				// 找到了FileInputStreamTest.java文件
-				if (file.endsWith("FileInputStreamTest.java")) {
-					System.err.println("--已经找到目标文件--");
-					return FileVisitResult.TERMINATE;  //终止后序的访问行为
-				}
-				return FileVisitResult.CONTINUE;
-			}
+    public static void main(String[] args) throws Exception {
+        // 遍历g:\publish\codes\15目录下的所有文件和子目录
+        Path path = Files.walkFileTree(Paths.get("F:", "workspace", "01", "疯狂Java讲义（第3版）", "第15章输入_输出"), new SimpleFileVisitor<Path>() {
+            // 访问文件时候触发该方法
+            @Override
+            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                System.err.println("正在访问文件：" + file + "文件");
+                // 找到了FileInputStreamTest.java文件
+                if (file.endsWith("FileInputStreamTest.java")) {
+                    System.err.println("--已经找到目标文件--");
+                    return FileVisitResult.TERMINATE;  //终止后序的访问行为
+                }
+                return FileVisitResult.CONTINUE;
+            }
 
-			// 开始访问目录时触发该方法
-			@Override
-			public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
-				System.out.println("正在访问目录：" + dir + " 路径");
-				return FileVisitResult.CONTINUE;
-			}
-		});
+            // 开始访问目录时触发该方法
+            @Override
+            public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
+                System.out.println("正在访问目录：" + dir + " 路径");
+                return FileVisitResult.CONTINUE;
+            }
+        });
 
+        System.out.println("Files.walkFileTree()方法返回值： " + path);
 
-
-		System.out.println("Files.walkFileTree()方法返回值： "+path);
-
-	}
+    }
 }
