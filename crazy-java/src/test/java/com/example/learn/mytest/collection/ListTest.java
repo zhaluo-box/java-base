@@ -1,4 +1,4 @@
-package com.example.test.collections;
+package com.example.learn.mytest.collection;
 
 import org.junit.After;
 import org.junit.Before;
@@ -10,29 +10,28 @@ import java.util.List;
 
 /**
  * list 测试
- *
  * list 交集并集差集的一个测试
- *
- *      list1 = 1,2,3,4,5,6
- *      list2 = 4,5,6,7,8,9
- *
- *      (1,2,3, (4,5,6,) 7,8,9)
+ * list1 = 1,2,3,4,5,6
+ * list2 = 4,5,6,7,8,9
+ * (1,2,3, (4,5,6,) 7,8,9)
  **/
 public class ListTest {
 
     private static List<Integer> list1 = new ArrayList<>();
+
     private static List<Integer> list2 = new ArrayList<>();
 
     @Before
     public void initList() {
-        Integer[] arr1 = {1, 2, 3, 4, 5, 6};
-        Integer[] arr2 = {4, 5, 6, 7, 8, 9};
+        Integer[] arr1 = { 1, 2, 3, 4, 5, 6 };
+        Integer[] arr2 = { 4, 5, 6, 7, 8, 9 };
 
         list1.addAll(Arrays.asList(arr1));
         list2.addAll(Arrays.asList(arr2));
 
         System.out.println(list1);
         System.out.println(list2);
+        System.out.println("init end");
     }
 
     /**
@@ -60,6 +59,18 @@ public class ListTest {
         System.out.println("=====================求并集 end=======================");
     }
 
+    /**
+     * 数组复制
+     */
+    @Test
+    public void arrayCopy() {
+        List<Integer> copyList = new ArrayList<>(list1);
+        list1.removeAll(list2);
+        System.out.println("list1: " + list1);
+        System.out.println("copy: " + copyList);
+        System.out.println("list2: " + list2);
+
+    }
 
     /**
      * 差集
