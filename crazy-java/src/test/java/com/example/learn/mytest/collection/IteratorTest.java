@@ -38,7 +38,7 @@ public class IteratorTest {
     public void test2() {
         List<Node> nodes = initNodes();
         for (Node node : nodes) {
-            Node exampleNode = new Node("王五", "");
+            Node exampleNode = new Node("张三", "");
             if (exampleNode.equals(node)) {
                 nodes.remove(node);
             }
@@ -53,7 +53,7 @@ public class IteratorTest {
         list.add("002");
         list.add("003");
 
-        list.removeIf("003"::equals);
+        list.removeIf("002"::equals);
     }
 
     /**

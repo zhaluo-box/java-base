@@ -1,4 +1,4 @@
-package com.example.learn;
+package com.example.base.test.collection;
 
 import org.junit.Test;
 
@@ -38,26 +38,26 @@ public class ForEachTest {
         System.out.println("--------------------map的原始遍历方式 1-----------------------");
         Set<String> keySet = map.keySet();
         for (String key : keySet) {
-            if("西游记".equals(key)){
-                map.put("西游记","吴承恩");
+            if ("西游记".equals(key)) {
+                map.put("西游记", "吴承恩");
             }
             System.out.println(key + " :  " + map.get(key));
         }
         System.out.println("--------------------map的原始遍历方式 2-----------------------");
         Set<Map.Entry<String, Object>> entries = map.entrySet();
         for (Map.Entry<String, Object> mp : entries) {
-            String key   = mp.getKey();
+            String key = mp.getKey();
             Object value = mp.getValue();
-            if("西游记".equals(key)){
-                map.put("西游记",998998989);
+            if ("西游记".equals(key)) {
+                map.put("西游记", 998998989);
             }
             System.out.println(key + " :  " + value);
         }
 
         System.out.println("--------------------map的Lamdba遍历方式 3-----------------------");
         map.forEach((key, value) -> {
-            if("西游记".equals(key)){
-                map.put("西游记","吴承恩");
+            if ("西游记".equals(key)) {
+                map.put("西游记", "吴承恩");
             }
             System.out.println(key + " :  " + value);
         });
@@ -67,7 +67,7 @@ public class ForEachTest {
             所以在修改过后再去遍历.还是原来的entry
          */
         System.out.println("--------------------------再遍历一次map--------------------------------");
-        map.forEach((key,value) ->{
+        map.forEach((key, value) -> {
             System.out.println(key + " :  " + value);
         });
     }
