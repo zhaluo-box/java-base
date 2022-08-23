@@ -13,11 +13,12 @@ import java.util.logging.Logger;
  */
 public class LoggingTest {
 
+    static final Logger logger = Logger.getGlobal();
+
     @Test
     @DisplayName("测试Java 提供的日志实现")
     public void nativeLoggingTest() {
 
-        var logger = Logger.getGlobal();
         logger.setLevel(Level.INFO);
 
         logger.info("java native logging info level test");
