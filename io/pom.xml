@@ -19,11 +19,11 @@
     <dependencies>
         <!-- word添加水印       -->
         <!-- https://mvnrepository.com/artifact/e-iceblue/spire.doc.free -->
-        <dependency>
-            <groupId>e-iceblue</groupId>
-            <artifactId>spire.doc.free</artifactId>
-            <version>5.2.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>e-iceblue</groupId>-->
+<!--            <artifactId>spire.doc.free</artifactId>-->
+<!--            <version>5.2.0</version>-->
+<!--        </dependency>-->
 
 
         <!-- pdf添加水印       -->
@@ -68,6 +68,12 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.0</version>
         </dependency>
     </dependencies>
 
