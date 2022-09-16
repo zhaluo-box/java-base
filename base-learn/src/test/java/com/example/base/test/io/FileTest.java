@@ -18,4 +18,10 @@ public class FileTest {
         FileUtil.printFileDirectoryToMD(rootFilename, "C:\\Users\\wmz\\Documents", "小马哥Spring目录.md");
     }
 
+    @Test
+    @DisplayName("扫描文件目录并制作markdown")
+    public void printDirToMDTest2() {
+        var rootFilename = "D:\\learn-video";
+        FileUtil.printFileDirectoryToMD(rootFilename, "C:\\Users\\wmz\\Documents", "learn-video.md");
+    }
 }
