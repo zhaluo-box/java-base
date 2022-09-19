@@ -9,7 +9,7 @@ public enum EnumProperties {
 
     MAN("男"), WOMAN("女"), OTHER("其他");
 
-    private String desc;
+    private final String desc;
 
     EnumProperties(String desc) {
         this.desc = desc;
