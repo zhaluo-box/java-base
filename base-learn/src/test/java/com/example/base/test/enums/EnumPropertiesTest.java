@@ -5,7 +5,6 @@ import com.example.base.learn.enums.NoValueEnum;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 
 /**
@@ -22,7 +21,7 @@ public class EnumPropertiesTest {
 
     @Test
     @DisplayName("枚举反射测试")
-    public void enumsReflectTest() throws InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+    public void enumsReflectTest() {
         var value = "MAN";
         var clazz = EnumProperties.class;
         if (clazz.isEnum()) {
@@ -34,7 +33,7 @@ public class EnumPropertiesTest {
 
     @Test
     @DisplayName("无参数枚举测试")
-    public void testNoValueEnum() throws InstantiationException, IllegalAccessException {
+    public void testNoValueEnum() {
         var noValueEnumClass = NoValueEnum.class;
         System.out.println(Arrays.toString(noValueEnumClass.getEnumConstants()));
     }

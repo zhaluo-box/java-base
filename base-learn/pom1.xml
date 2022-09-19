@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <dependencies>
+        <!-- log4j1 核心-->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+        <!-- jcl 核心-->
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <!-- logback-绑定器 包含了核心和slf4j 以及logback的绑定器 三个 -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.4</version>
+        </dependency>
+        <!-- slf4j-api 核心-->
+        <!-- <dependency>-->
+        <!-- <groupId>org.slf4j</groupId>-->
+        <!-- <artifactId>slf4j-api</artifactId>-->
+        <!-- <version>1.7.32</version>-->
+        <!-- </dependency>-->
+        <!-- slf4j-log4j1 绑定器-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.32</version>
+        </dependency>
+        <!-- log4j2-slf4j-impl 绑定器 绑定log4j2 -->
+        <!-- <dependency>-->
+        <!-- <groupId>org.apache.logging.log4j</groupId>-->
+        <!-- <artifactId>log4j-slf4j-impl</artifactId>-->
+        <!-- <version>2.13.3</version>-->
+        <!-- </dependency>-->
+        <!-- log4j2桥接器-->
+        <!-- <dependency>-->
+        <!-- <groupId>org.apache.logging.log4j</groupId>-->
+        <!-- <artifactId>log4j-to-slf4j</artifactId>--><!-- <version>2.9.1</version>-->
+        <!-- </dependency>-->
+        <!-- log4j-over-slf4j log4j1的桥接器 不能和log4j1的核心共存会有jar冲突问题 -->
+        <!-- <dependency>-->
+        <!-- <groupId>org.slf4j</groupId>-->
+        <!-- <artifactId>log4j-over-slf4j</artifactId>-->
+        <!-- <version>1.7.32</version>-->
+        <!-- </dependency>-->
+        <!-- log4j2 核心-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.13.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.13.2</version>
+        </dependency>
+    </dependencies>
+</project>
