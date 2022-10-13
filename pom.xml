@@ -18,6 +18,7 @@
         <module>io</module>
         <module>java8</module>
         <module>base-learn</module>
+        <module>base-wyr</module>
     </modules>
 
     <properties>

@@ -3,7 +3,7 @@ package com.example.learn.chapter18.section05.DynaProxy;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
-public class MyInvokationHandler implements InvocationHandler {
+public class MyInvocationHandler implements InvocationHandler {
 
     // 需要被代理的对象
     private Object target;

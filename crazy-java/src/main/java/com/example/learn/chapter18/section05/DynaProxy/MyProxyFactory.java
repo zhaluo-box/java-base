@@ -6,7 +6,7 @@ public class MyProxyFactory {
     // 为指定target生成动态代理对象
     public static Object getProxy(Object target) throws Exception {
         // 创建一个MyInvokationHandler对象
-        MyInvokationHandler handler = new MyInvokationHandler();
+        MyInvocationHandler handler = new MyInvocationHandler();
 
         // 为MyInvokationHandler设置target对象
         handler.setTarget(target);

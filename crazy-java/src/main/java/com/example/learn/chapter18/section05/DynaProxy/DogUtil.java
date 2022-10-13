@@ -1,5 +1,8 @@
 package com.example.learn.chapter18.section05.DynaProxy;
 
+/**
+ * 增强
+ */
 public class DogUtil {
     // 第一个拦截器方法
     public void method1() {
