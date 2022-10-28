@@ -33,7 +33,22 @@ public class StringTest {
     @Test
     @DisplayName("字符串 正则校验")
     public void patternTest() {
-        var pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{10,}";
-        System.out.println(Pattern.matches(pattern, "Admin123456!"));
+        var pwd = "Aa1234567890@";
+        var pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[~!@#$%^&*()_+;'/.,]).{10,}";
+        System.out.println(Pattern.matches(pattern, pwd));
     }
+
+    @Test
+    public void pwdTest() {
+        //        var pwd = "Aa1234567890@";
+        var pwd = "Aa1234567890XX##";
+        var pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{10,30}$";
+
+        var xx = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{10,}";
+
+        var pa = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[`~!！@#$^&*()=|{}':;,.<>《》+_…）—【】‘；：”“。，、？]).{10,30}$";
+        System.out.println(Pattern.matches(pa, pwd));
+        System.out.println(pattern.matches(pwd));
+    }
+
 }
