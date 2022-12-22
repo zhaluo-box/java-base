@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.regex.Pattern;
 
 /**
@@ -23,6 +24,23 @@ public class StringTest {
 
         var s = String.format("测试事件1 【 %s 】 【 %s 】", objects.toArray());
         System.out.println(s);
+    }
+
+    @Test
+    @DisplayName("String 日期 format 测试")
+    public void dateFormatTest() {
+
+        var objects = new ArrayList<>();
+        objects.add("name");
+        objects.add(new Date());
+
+        System.out.println(String.format("测试事件1 【 %s 】 【 %tc 】", objects.toArray()));
+        System.out.println(String.format("测试事件2 【 %s 】 【 %tF 】", objects.toArray()));
+        System.out.println(String.format("测试事件3 【 %s 】 【 %tD 】", objects.toArray()));
+        System.out.println(String.format("测试事件4 【 %s 】 【 %tr 】", objects.toArray()));
+        System.out.println(String.format("测试事件5 【 %s 】 【 %tT 】", objects.toArray()));
+        System.out.println(String.format("测试事件6 【 %s 】 【 %tR 】", objects.toArray()));
+        System.out.println(String.format("测试事件6 【 %s 】 【 %tFT 】", objects.toArray()));
     }
 
     /**
