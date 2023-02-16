@@ -1,8 +1,11 @@
 package com.example.base.test.collection;
 
+import com.example.base.learn.enums.NoValueEnum;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -12,8 +15,19 @@ import java.util.List;
  */
 public class ListApiTest {
 
+    @Test
+    @DisplayName("集合包含方法测试")
+    public void collectionContainTest() {
+        var noValueEnums = new HashSet<NoValueEnum>(2);
+        noValueEnums.add(NoValueEnum.OTHER);
+        noValueEnums.add(NoValueEnum.DEFAULT);
+
+        System.out.println(noValueEnums.contains(NoValueEnum.COMMON));
+        System.out.println(noValueEnums.contains(NoValueEnum.OTHER));
+    }
+
     /**
-     * list 交际测试
+     * list 交集测试
      */
     @Test
     public void retainAllTest() {

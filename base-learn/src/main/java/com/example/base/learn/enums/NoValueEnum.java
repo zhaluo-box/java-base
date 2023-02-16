@@ -6,5 +6,5 @@ package com.example.base.learn.enums;
  * @author zl
  */
 public enum NoValueEnum {
-    COMMON, DEFAULT
+    COMMON, DEFAULT, OTHER
 }
