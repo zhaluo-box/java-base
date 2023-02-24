@@ -48,4 +48,13 @@ public class BigDecimalTest {
         System.out.println(result);
     }
 
+    @Test
+    @DisplayName("scale method test")
+    public void testScale() {
+        var data = new BigDecimal("10000.12209202029");
+        System.out.println(data);
+        var newData = data.setScale(2, RoundingMode.HALF_UP);
+        System.out.println(newData);
+    }
+
 }
