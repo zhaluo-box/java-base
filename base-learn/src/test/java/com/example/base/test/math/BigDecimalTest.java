@@ -57,4 +57,18 @@ public class BigDecimalTest {
         System.out.println(newData);
     }
 
+    @Test
+    @DisplayName("BigDecimal equals method test")
+    public void testEquals() {
+        BigDecimal num = new BigDecimal("3.02");
+        System.out.println("(BigDecimal.ZERO.equals(num), result : " + (BigDecimal.ZERO.equals(num)));
+        System.out.println("BigDecimal.ZERO.equals(null), result : " + (BigDecimal.ZERO.equals(null)));
+        System.out.println("BigDecimal.ZERO.equals(new BigDecimal(\"0.00\")) ,result : " + (BigDecimal.ZERO.equals(new BigDecimal("0.00"))));
+
+        System.out.println("BigDecimal.ZERO.compareTo(num) == 0 ,result : " + (BigDecimal.ZERO.compareTo(num) == 0));
+        System.out.println("BigDecimal.ZERO.compareTo(new BigDecimal(\"0.00\")) == 0 ,result : " + (BigDecimal.ZERO.compareTo(new BigDecimal("0.00")) == 0));
+
+        System.out.println("结论： BigDecimal 不能用equals 判定，数字判定最好使用compareTo 方法");
+    }
+
 }

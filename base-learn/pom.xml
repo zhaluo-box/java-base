@@ -15,7 +15,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.compilerVersion>11</maven.compiler.compilerVersion>
-        <hutool.version>5.7.16</hutool.version>
+        <hutool.version>5.8.15</hutool.version>
     </properties>
 
 
@@ -80,11 +80,17 @@
             <scope>test</scope>
         </dependency>
 
-
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
         </dependency>
+
+        <!--        <dependency>-->
+        <!--            <groupId>cn.hutool</groupId>-->
+        <!--            <artifactId>hutool-all</artifactId>-->
+        <!--            <version>5.8.15</version>-->
+        <!--            <scope>runtime</scope>-->
+        <!--        </dependency>-->
     </dependencies>
 
 
@@ -102,7 +108,6 @@
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
-                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
