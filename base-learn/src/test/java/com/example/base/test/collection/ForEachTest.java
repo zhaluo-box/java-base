@@ -1,6 +1,7 @@
 package com.example.base.test.collection;
 
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 
 import java.util.*;
 
@@ -8,6 +9,25 @@ import java.util.*;
  * 测试forEach方法
  */
 public class ForEachTest {
+
+    @Test
+    @DisplayName("loop break test")
+    public void breakTest() {
+        List<Integer> list = new ArrayList<>();
+        list.add(12);
+        list.add(13);
+        list.add(1312);
+        list.add(1311);
+        list.add(12);
+
+        list.forEach(x -> {
+            if (x == 1312) {
+                return;
+            }
+            System.out.println(x);
+        });
+
+    }
 
     @Test
     public void arrTest() {

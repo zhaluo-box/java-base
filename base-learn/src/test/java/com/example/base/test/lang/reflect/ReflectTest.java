@@ -1,11 +1,14 @@
 package com.example.base.test.lang.reflect;
 
 import com.example.base.learn.lang.reflect.SubClass;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 反射测试
@@ -34,5 +37,18 @@ public class ReflectTest {
         Arrays.stream(declaredFields).forEach(field -> System.out.println(field.getName()));
         log.info("结论: getDeclaredFields() 只能获取当前类的所有字段");
     }
-    
+
+    @Test
+    @DisplayName("反射测试方法的名称")
+    @SneakyThrows
+    public void getMethodParamTypeName() {
+        var methodTest = new ReflectTest().getClass().getMethod("methodTest", Map.class);
+        System.out.println(methodTest.getGenericParameterTypes()[0].getTypeName());
+    }
+
+    public List<Long> methodTest(Map<String, List<Object>> param) {
+
+        return null;
+    }
+
 }
