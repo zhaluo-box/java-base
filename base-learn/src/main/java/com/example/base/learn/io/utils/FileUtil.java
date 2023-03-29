@@ -19,7 +19,7 @@ import java.util.List;
 public final class FileUtil {
 
     private static final String TAB_CHARACTER = "    ";
-    
+
     /**
      * 输入文件目录为Markdown
      */
@@ -43,7 +43,7 @@ public final class FileUtil {
         return fileDesc;
     }
 
-    private static void printMarkdown(String markdownName, FileDescription description) {
+    private static void printMarkdown(String markdownName, FileDescription topFileDesc) {
 
         var file = new File(markdownName);
         if (!file.exists()) {
@@ -55,10 +55,10 @@ public final class FileUtil {
         }
         try (var bufferedWriter = new BufferedWriter(new FileWriter(file))) {
 
-            var content = buildContent(description);
-            var descriptions = description.getDescriptions();
+            var content = buildContent(topFileDesc);
+            var childFileDesc = topFileDesc.getDescriptions();
             bufferedWriter.write(content);
-            contentHandler(bufferedWriter, descriptions);
+            contentHandler(bufferedWriter, childFileDesc);
 
         } catch (IOException e) {
             throw new RuntimeException("文件输出异常", e);
@@ -70,6 +70,7 @@ public final class FileUtil {
         descriptions.forEach(desc -> {
             try {
                 bufferedWriter.write(buildContent(desc));
+                // 处理子文件夹
                 if (desc.isDir()) {
                     contentHandler(bufferedWriter, desc.getDescriptions());
                 }
