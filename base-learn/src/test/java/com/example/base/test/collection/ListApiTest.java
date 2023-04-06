@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -57,6 +58,14 @@ public class ListApiTest {
 
         System.out.println(b1);
         System.out.println("保留的元素2: " + sites);
+    }
+
+    @Test
+    @DisplayName("remove all test")
+    public void removeAllTest() {
+        List<Integer> data = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        data.removeAll(List.of(1, 23, 4));
+        System.out.println(data);
     }
 
     /**

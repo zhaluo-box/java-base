@@ -19,21 +19,20 @@ public class JsonTest {
 
     @Test
     @DisplayName("演示json对象多次转换")
-    public void testDes() throws InstantiationException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
+    public void testDes() throws InstantiationException, IllegalAccessException, InvocationTargetException, ClassNotFoundException, NoSuchMethodException {
 
         var jsonTestClass = JsonTest.class;
 
-        var methods = jsonTestClass.getMethods();
-        var method = methods[0];
+        var method = jsonTestClass.getMethod("approveMethod", ApproveVO.class);
 
-        var parameterType = method.getGenericParameterTypes()[0];
+        var parameterType = method.getParameterTypes()[0];
 
         var jsonTest = jsonTestClass.newInstance();
         method.setAccessible(true);
         var vo = new ApproveVO<Object>().setName("zhang").setData(new Student("张三"));
 
         var str = JSONUtil.toJsonStr(vo);
-        Object o = JSONUtil.toBean(str, Class.forName(parameterType.getTypeName()));
+        Object o = JSONUtil.toBean(str, parameterType);
 
         method.invoke(jsonTest, o);
 
