@@ -37,4 +37,11 @@ public class EnumPropertiesTest {
         var noValueEnumClass = NoValueEnum.class;
         System.out.println(Arrays.toString(noValueEnumClass.getEnumConstants()));
     }
+
+    @Test
+    @DisplayName("测试枚举名称")
+    public void testEnumName() {
+        System.out.println(EnumProperties.MAN.name());
+    }
+
 }
