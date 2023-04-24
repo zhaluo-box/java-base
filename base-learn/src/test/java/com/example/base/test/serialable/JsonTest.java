@@ -5,8 +5,8 @@ import com.example.base.learn.entity.object.Student;
 import lombok.Data;
 import lombok.ToString;
 import lombok.experimental.Accessors;
-import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.InvocationTargetException;
 

@@ -1,7 +1,7 @@
 package com.example.base.test.syntax;
 
-import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 /**
  * Created  on 2022/10/28 09:9:07

@@ -1,8 +1,8 @@
 package com.example.base.test.collection;
 
 import com.example.base.learn.enums.NoValueEnum;
-import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,7 +39,7 @@ public class ListApiTest {
         sites.add("Runoob");
         sites.add("Taobao");
 
-        System.out.println("ArrayList 1: " + sites);
+        System.out.println("sites 1: " + sites);
 
         // 创建另一个动态数组
         ArrayList<String> sites2 = new ArrayList<>();
@@ -48,23 +48,49 @@ public class ListApiTest {
         sites2.add("Wiki");
         sites2.add("Runoob");
         sites2.add("Google");
-        System.out.println("ArrayList 2: " + sites2);
+        System.out.println("sites2 2: " + sites2);
 
         // 保留元素
         boolean b = sites.retainAll(sites2);
-        System.out.println(b);
-        System.out.println("保留的元素: " + sites);
-        boolean b1 = sites.retainAll(sites2);
+        System.out.println("是否存在交集： " + b);
+        System.out.println("sites的元素: " + sites);
+        System.out.println("sites2的元素: " + sites2);
 
+        boolean b1 = sites.retainAll(sites2);
         System.out.println(b1);
         System.out.println("保留的元素2: " + sites);
+    }
+
+    @Test
+    @DisplayName("retain all 验证2 ，集合2 完全包含集合1 会出现什么清空")
+    public void retainAllTest2() {
+
+        // 创建一个动态数组
+        ArrayList<String> sites = new ArrayList<>();
+        sites.add("Google");
+        sites.add("Runoob");
+        sites.add("Taobao");
+        System.out.println("sites 1: " + sites);
+
+        // 创建另一个动态数组
+        ArrayList<String> sites2 = new ArrayList<>();
+        sites2.add("Wiki");
+        sites2.add("Runoob");
+        sites2.add("Google");
+        sites2.add("Taobao");
+        System.out.println("sites2 2: " + sites2);
+
+        System.out.println(sites.removeAll(sites2));
+        System.out.println("集合1" + sites);
+        System.out.println("集合2" + sites2);
     }
 
     @Test
     @DisplayName("remove all test")
     public void removeAllTest() {
         List<Integer> data = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
-        data.removeAll(List.of(1, 23, 4));
+        var changed = data.removeAll(List.of(1, 23, 4));
+        System.out.println(changed);
         System.out.println(data);
     }
 

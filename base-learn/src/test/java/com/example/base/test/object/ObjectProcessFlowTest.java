@@ -2,7 +2,7 @@ package com.example.base.test.object;
 
 import com.example.base.learn.object.OrdinaryObjectProcessFlow;
 import com.example.base.learn.object.SubObjectProcessFlow;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * 测试类的加载顺序

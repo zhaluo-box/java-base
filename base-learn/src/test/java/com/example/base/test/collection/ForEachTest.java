@@ -1,7 +1,7 @@
 package com.example.base.test.collection;
 
-import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.util.*;
 

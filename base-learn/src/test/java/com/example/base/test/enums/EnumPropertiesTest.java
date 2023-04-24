@@ -2,8 +2,8 @@ package com.example.base.test.enums;
 
 import com.example.base.learn.enums.EnumProperties;
 import com.example.base.learn.enums.NoValueEnum;
-import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
