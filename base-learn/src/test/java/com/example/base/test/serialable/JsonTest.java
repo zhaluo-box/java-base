@@ -21,15 +21,16 @@ public class JsonTest {
     @DisplayName("演示json对象多次转换")
     public void testDes() throws InstantiationException, IllegalAccessException, InvocationTargetException, ClassNotFoundException, NoSuchMethodException {
 
-        var jsonTestClass = JsonTest.class;
+        var jsonTestClass = JsonSerializableTest.class;
 
-        var method = jsonTestClass.getMethod("approveMethod", ApproveVO.class);
+        //        var method = jsonTestClass.getMethod("approveMethod", ApproveVO.class);
 
+        var method = jsonTestClass.getDeclaredMethods()[0];
         var parameterType = method.getParameterTypes()[0];
 
         var jsonTest = jsonTestClass.newInstance();
         method.setAccessible(true);
-        var vo = new ApproveVO<Object>().setName("zhang").setData(new Student("张三"));
+        var vo = new ApproveVO<Student>().setName("zhang").setData(new Student("张三"));
 
         var str = JSONUtil.toJsonStr(vo);
         Object o = JSONUtil.toBean(str, parameterType);
@@ -49,9 +50,12 @@ public class JsonTest {
 
     }
 
-    public void approveMethod(ApproveVO<Student> data) {
+    public static class JsonSerializableTest {
+        public void approveMethod(ApproveVO<Student> data) {
 
-        System.out.println(data.getData().getName());
+            System.out.println(data.getData().getName());
+        }
+
     }
 
 }

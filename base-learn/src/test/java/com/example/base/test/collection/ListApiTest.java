@@ -115,4 +115,14 @@ public class ListApiTest {
         List<String> list = null;
         list.forEach(System.out::println);
     }
+
+    @Test
+    public void testXX() {
+
+        String source = "CTDP,SKDP,SKDJ,CTDJ", target = "SKDJ,SKDP,CTDJ";
+        List<String> collectObj;
+        collectObj = new ArrayList<>(Arrays.asList(source.split(",")));
+        List<String> targetCollectObj = Arrays.asList(target.split(","));
+        collectObj.removeAll(targetCollectObj);
+    }
 }

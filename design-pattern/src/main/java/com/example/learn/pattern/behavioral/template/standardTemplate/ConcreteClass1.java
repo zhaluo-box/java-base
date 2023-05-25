@@ -1,6 +1,6 @@
-package com.example.learn.pattern.template.standardTemplate;
+package com.example.learn.pattern.behavioral.template.standardTemplate;
 
-public class ConcreteClass2 extends AbstractClass {
+public class ConcreteClass1 extends AbstractClass {
     //实现基本方法
     protected void doAnything() {
         //业务逻辑处理

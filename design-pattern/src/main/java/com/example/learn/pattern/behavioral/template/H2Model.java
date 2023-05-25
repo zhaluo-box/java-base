@@ -1,12 +1,12 @@
-package com.example.learn.pattern.template;
+package com.example.learn.pattern.behavioral.template;
 
-public class H2Model extends HummerModel{
+public class H2Model extends HummerModel {
     protected H2Model(String name, boolean isAlarm) {
-        super( name, isAlarm );
+        super(name, isAlarm);
     }
 
     protected H2Model(String name) {
-        super( name );
+        super(name);
     }
 
     @Override
@@ -16,21 +16,21 @@ public class H2Model extends HummerModel{
 
     @Override
     protected void start() {
-        System.out.println(this.name +"start!!!!!");
+        System.out.println(this.name + "start!!!!!");
     }
 
     @Override
     protected void stop() {
-        System.out.println(this.name +"stop!!!!!");
+        System.out.println(this.name + "stop!!!!!");
     }
 
     @Override
     protected void alarm() {
-        System.out.println(this.name +"honk!!!!!!!!");
+        System.out.println(this.name + "honk!!!!!!!!");
     }
 
     @Override
     protected void engineBoom() {
-        System.out.println(this.name +"engineBoom!!!!!");
+        System.out.println(this.name + "engineBoom!!!!!");
     }
 }

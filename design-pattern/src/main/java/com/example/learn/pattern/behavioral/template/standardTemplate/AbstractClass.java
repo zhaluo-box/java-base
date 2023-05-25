@@ -1,7 +1,6 @@
-package com.example.learn.pattern.template.standardTemplate;
+package com.example.learn.pattern.behavioral.template.standardTemplate;
 
 public abstract class AbstractClass {
-
 
     // 基本方法
     protected abstract void doSomething();

@@ -51,28 +51,22 @@
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>5.7.2</version>
+            <artifactId>junit-jupiter-api</artifactId>
             <scope>test</scope>
         </dependency>
 
-        <!--        <dependency>-->
-        <!--            <groupId>org.junit.jupiter</groupId>-->
-        <!--            <artifactId>junit-jupiter-api</artifactId>-->
-        <!--            <scope>test</scope>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
 
-        <!--        <dependency>-->
-        <!--            <groupId>org.junit.jupiter</groupId>-->
-        <!--            <artifactId>junit-jupiter-engine</artifactId>-->
-        <!--            <scope>test</scope>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
 
-        <!--        <dependency>-->
-        <!--            <groupId>org.junit.platform</groupId>-->
-        <!--            <artifactId>junit-platform-engine</artifactId>-->
-        <!--            <scope>test</scope>-->
-        <!--        </dependency>-->
 
     </dependencies>
 
@@ -81,17 +75,17 @@
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
-
     <dependencyManagement>
-        <!--        <dependencies>-->
-        <!--            <dependency>-->
-        <!--                <groupId>org.junit</groupId>-->
-        <!--                <artifactId>junit-bom</artifactId>-->
-        <!--                <version>5.8.2</version>-->
-        <!--                <type>pom</type>-->
-        <!--                <scope>import</scope>-->
-        <!--            </dependency>-->
-        <!--        </dependencies>-->
+        <dependencies>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>5.8.2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+
     </dependencyManagement>
 
 </project>

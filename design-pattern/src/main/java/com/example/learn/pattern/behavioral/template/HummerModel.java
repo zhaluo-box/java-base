@@ -1,4 +1,4 @@
-package com.example.learn.pattern.template;
+package com.example.learn.pattern.behavioral.template;
 
 public abstract class HummerModel {
 
@@ -27,13 +27,13 @@ public abstract class HummerModel {
     // 引擎
     protected abstract void engineBoom();
 
-    protected  boolean isAlarm2(){
+    protected boolean isAlarm2() {
         return true;
     }
 
     // 运行
     final protected void run() {
-        System.out.println( this.name + "---->" );
+        System.out.println(this.name + "---->");
         start();
         engineBoom();
         if (isAlarm) {
