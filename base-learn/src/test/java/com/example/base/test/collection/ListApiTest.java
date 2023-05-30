@@ -125,4 +125,16 @@ public class ListApiTest {
         List<String> targetCollectObj = Arrays.asList(target.split(","));
         collectObj.removeAll(targetCollectObj);
     }
+
+    /**
+     * addAll(null) 会抛出空指针异常
+     */
+    @Test
+    @DisplayName("test null be allow addAll")
+    public void addAllTest() {
+        List<String> list = new ArrayList<>(List.of("111"));
+        List<String> other = List.of("12", "1223");
+        list.addAll(null);
+        System.out.println("list = " + list);
+    }
 }
