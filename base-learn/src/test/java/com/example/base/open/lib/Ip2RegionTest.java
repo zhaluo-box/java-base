@@ -38,6 +38,7 @@ public class Ip2RegionTest {
             return;
         }
 
+        //        String ip = "66.249.65.110";
         String ip = "171.217.113.151";//"38.207.136.249";//"13.230.13.89";
         // 3、查询
         try {

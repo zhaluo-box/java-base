@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.regex.Pattern;
 
 /**
@@ -67,6 +68,28 @@ public class StringTest {
         var pa = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[`~!！@#$^&*()=|{}':;,.<>《》+_…）—【】‘；：”“。，、？]).{10,30}$";
         System.out.println(Pattern.matches(pa, pwd));
         System.out.println(pattern.matches(pwd));
+    }
+
+    @Test
+    @DisplayName("字符串parse 测试")
+    public void testParse() {
+
+        var originalParams = new HashMap<String, Object>();
+        originalParams.put("kunnrHigh", "900000001");
+        originalParams.put("kunnrLow", "000000001");
+        originalParams.put("sharedSize", 10000);
+
+        String kunnrHigh = String.valueOf(originalParams.get("kunnrHigh"));
+        String kunnrLow = String.valueOf(originalParams.get("kunnrLow"));
+        String sharedSize = String.valueOf(originalParams.get("sharedSize"));
+
+        long high = Long.parseLong(kunnrHigh);
+        long low = Long.parseLong(kunnrLow);
+        long size = Long.parseLong(sharedSize);
+
+        System.out.println("high = " + high);
+        System.out.println("low = " + low);
+        System.out.println("size = " + size);
     }
 
 }
