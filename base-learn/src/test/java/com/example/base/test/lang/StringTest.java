@@ -92,4 +92,12 @@ public class StringTest {
         System.out.println("size = " + size);
     }
 
+    @Test
+    @DisplayName("字符串替换测试")
+    public void replaceTest() {
+        String packageName = "com.example.base.test.lang.StringTest";
+        System.out.println("packageName.replace(\".\",\"/\") = " + packageName.replace(".", "/"));
+        System.out.println("packageName.replaceAll(\"\\\\.\", \"/\") = " + packageName.replaceAll("\\.", "/"));
+    }
+
 }
