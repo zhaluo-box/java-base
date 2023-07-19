@@ -1,4 +1,4 @@
-package com.example.base.learn.io;
+package com.example.base.utils.io;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -15,6 +15,11 @@ import java.util.List;
 @Data
 @Accessors(chain = true)
 public class FileDescription {
+
+    /**
+     * 绝对路径
+     */
+    private String absPath;
 
     /**
      * 文件名称

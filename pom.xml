@@ -18,9 +18,9 @@
         <module>io</module>
         <module>java8</module>
         <module>base-learn</module>
-        <module>base-wyr</module>
         <module>open-lib-learn</module>
         <module>common</module>
+        <module>base-utils</module>
     </modules>
 
     <properties>
