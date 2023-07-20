@@ -41,9 +41,9 @@ public abstract class CharacterRecognition {
      * @return 开始与结束字符之间的内容，不包含，开始与结束字符
      */
     protected static String extractData(String source, String from, String end) {
-
-        // TODO  2023/7/19 待实现
-        return null;
+        var fromIndex = source.indexOf(from);
+        var endIndex = source.indexOf(end, fromIndex);
+        return source.substring(fromIndex + from.length(), endIndex);
     }
 
 }
