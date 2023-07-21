@@ -27,7 +27,7 @@ public interface FileScanner {
         var descriptions = fileDesc.getDescriptions();
         var files = rootFile.listFiles();
         if (files != null) {
-            scanFile(descriptions, files, 0);
+            scanFile(descriptions, files, 1);
         }
         return fileDesc;
     }

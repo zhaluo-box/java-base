@@ -5,10 +5,13 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.net.URLEncodeUtil;
 import cn.hutool.core.util.StrUtil;
 import lombok.AccessLevel;
+import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,10 +43,88 @@ public final class MarkdownUtil extends CharacterRecognition {
     /**
      * 生成大纲 markdown 文件
      */
-    public static void generateOutlineMD(String baseDirAbsPath) {
+    public static void generateOutlineMD(String baseDirAbsPath, String mdFilePath) {
 
         var fileDesc = FileScanner.scanFileList(baseDirAbsPath);
 
+        // 生成大纲，
+
+        // 第一级肯定是根目录
+
+        var descriptions = fileDesc.getDescriptions();
+
+        if (CollectionUtil.isEmpty(descriptions)) {
+            return;
+        }
+
+        List<TitleDefinition> cache = new ArrayList<>(256);
+
+        parseFileOutline(baseDirAbsPath, descriptions, cache);
+
+        try (var writer = new BufferedWriter(new FileWriter(mdFilePath, StandardCharsets.UTF_8))) {
+            // 开头避免出现没有一级的情况
+            writer.write("- outline" + LINE_BREAK);
+            // 处理内容
+            cache.forEach(title -> {
+                var content = String.format("[%s](%s)", title.name, URLEncodeUtil.encode(title.getLink()));
+                content = TAB_CHARACTER.repeat(title.getLevel() - 1) + "- " + content + LINE_BREAK;
+                try {
+                    writer.write(content);
+                } catch (IOException e) {
+                    System.err.println(e.getMessage());
+                }
+            });
+
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+
+    }
+
+    /**
+     * 解析文件大纲
+     *
+     * @param baseDirAbsPath 根路径
+     * @param descriptions   文件描述列表
+     * @param cache          缓存 ==》 大纲放入缓存
+     */
+    public static void parseFileOutline(String baseDirAbsPath, List<FileDescription> descriptions, List<TitleDefinition> cache) {
+        if (CollectionUtil.isEmpty(descriptions)) {
+            return;
+        }
+        descriptions.forEach(desc -> {
+            if ("md".equalsIgnoreCase(desc.getSuffix())) {
+                var level = desc.getLevel();
+                var prefixPath = getPrefixPath(baseDirAbsPath, desc.getAbsPath(), level);
+                var finalPath = prefixPath + desc.getFilename();
+
+                var titleDefinition = new TitleDefinition().setLink(finalPath).setName(desc.getFilename()).setLevel(level);
+                cache.add(titleDefinition);
+            }
+
+            if (desc.isDir()) {
+                parseFileOutline(baseDirAbsPath, desc.getDescriptions(), cache);
+            }
+
+            // 其他类型文件不处理
+        });
+    }
+
+    public static String getPrefixPath(String rootPath, String absPath, int level) {
+        var path = absPath.replace(rootPath, "");
+        var split = path.split("\\\\");
+
+        var builder = new StringBuilder("." + File.separator);
+
+        if (level == 1) {
+            return builder.toString();
+        }
+
+        for (int i = 0; i < level - 1; i++) {
+            builder.append(split[i]).append(File.separator);
+        }
+
+        return builder.toString();
     }
 
     /**
@@ -191,6 +272,17 @@ public final class MarkdownUtil extends CharacterRecognition {
      */
     private static String replacePath(String sourceFileAbsPath, String baseDirAbsPath, String targetDirAbsPath) {
         return sourceFileAbsPath.replace(baseDirAbsPath, targetDirAbsPath);
+    }
+
+    @Data
+    @Accessors(chain = true)
+    public static class TitleDefinition {
+
+        private String name;
+
+        private String link;
+
+        private int level;
     }
 
 }
