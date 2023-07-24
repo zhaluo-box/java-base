@@ -41,16 +41,20 @@ public final class MarkdownUtil extends CharacterRecognition {
     }
 
     /**
-     * 生成大纲 markdown 文件
+     * 生成大纲 markdown 文件, 默认生成tab 与link  encode
      */
     public static void generateOutlineMD(String baseDirAbsPath, String mdFilePath) {
+        generateOutlineMD(baseDirAbsPath, mdFilePath, true, true);
+    }
+
+    /**
+     * 生成大纲 markdown 文件
+     */
+    public static void generateOutlineMD(String baseDirAbsPath, String mdFilePath, boolean encode, boolean tab) {
 
         var fileDesc = FileScanner.scanFileList(baseDirAbsPath);
 
-        // 生成大纲，
-
         // 第一级肯定是根目录
-
         var descriptions = fileDesc.getDescriptions();
 
         if (CollectionUtil.isEmpty(descriptions)) {
@@ -66,8 +70,7 @@ public final class MarkdownUtil extends CharacterRecognition {
             writer.write("- outline" + LINE_BREAK);
             // 处理内容
             cache.forEach(title -> {
-                var content = String.format("[%s](%s)", title.name, URLEncodeUtil.encode(title.getLink()));
-                content = TAB_CHARACTER.repeat(title.getLevel() - 1) + "- " + content + LINE_BREAK;
+                String content = buildTitleContent(title, encode, tab);
                 try {
                     writer.write(content);
                 } catch (IOException e) {
@@ -79,6 +82,18 @@ public final class MarkdownUtil extends CharacterRecognition {
             System.err.println(e.getMessage());
         }
 
+    }
+
+    private static String buildTitleContent(TitleDefinition title) {
+        return buildTitleContent(title, true, true);
+    }
+
+    private static String buildTitleContent(TitleDefinition title, boolean encode, boolean tab) {
+        String link = encode ? URLEncodeUtil.encode(title.getLink()) : title.getLink();
+        var content = String.format("[%s](%s)", title.name, link);
+        var tabStr = tab ? TAB_CHARACTER.repeat(title.getLevel() - 1) : "";
+        content = tabStr + "- " + content + LINE_BREAK;
+        return content;
     }
 
     /**

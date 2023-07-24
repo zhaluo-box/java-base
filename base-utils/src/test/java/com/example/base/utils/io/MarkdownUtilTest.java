@@ -51,6 +51,12 @@ class MarkdownUtilTest {
     }
 
     @Test
+    @DisplayName("生成MD大纲测试")
+    void generateOutlineMDNoEncodeLink() {
+        MarkdownUtil.generateOutlineMD("D:\\tmp-dir\\docs\\", "D:\\tmp-dir\\doc-outline.md", false, false);
+    }
+
+    @Test
     public void fileDescParse() {
 
         var jsonStr = "{\n" + "                            \"absPath\": \"D:\\\\tmp-dir\\\\docs\\\\framework\\\\spring\\\\01 Spring learn outline.md\",\n"
