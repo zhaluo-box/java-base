@@ -39,7 +39,7 @@ public class FileDescription {
     /**
      * 文件后缀
      */
-    private String suffix;
+    private String suffix = "**";
 
     /**
      * 子文件夹

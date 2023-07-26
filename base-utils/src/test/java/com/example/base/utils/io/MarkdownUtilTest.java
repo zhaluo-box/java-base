@@ -2,14 +2,12 @@ package com.example.base.utils.io;
 
 import cn.hutool.core.net.URLDecoder;
 import cn.hutool.core.net.URLEncodeUtil;
-import cn.hutool.json.JSONUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 
 /**
  * Created  on 2023/7/20 15:15:07
@@ -57,24 +55,15 @@ class MarkdownUtilTest {
     }
 
     @Test
-    public void fileDescParse() {
+    @DisplayName("typora md 转 ob md")
+    void typoraToObsidianTest() {
+        MarkdownUtil.TyporaToObsidian("D:\\tmp-dir\\docs\\", "D:\\tmp-dir\\ob-back\\docs\\", "images");
+    }
 
-        var jsonStr = "{\n" + "                            \"absPath\": \"D:\\\\tmp-dir\\\\docs\\\\framework\\\\spring\\\\01 Spring learn outline.md\",\n"
-                      + "                            \"filename\": \"01 Spring learn outline.md\",\n" + "                            \"isDir\": false,\n"
-                      + "                            \"level\": 3,\n" + "                            \"suffix\": \"md\",\n"
-                      + "                            \"descriptions\": []\n" + "                        }";
-
-        var fileDescription = JSONUtil.toBean(jsonStr, FileDescription.class);
-
-        var fileDescriptions = new ArrayList<FileDescription>(1);
-
-        fileDescriptions.add(fileDescription);
-
-        var cache = new ArrayList<MarkdownUtil.TitleDefinition>();
-
-        MarkdownUtil.parseFileOutline("D:\\tmp-dir\\md-back\\docs\\", fileDescriptions, cache);
-
-        System.out.println(cache);
-
+    @Test
+    @DisplayName("URL 解码测试")
+    void decodeLinkTest() {
+        var link = "03%20BeanFactoryPostProcessor%20and%20Mybatis-spring.assets/image-20230719144931003.png";
+        System.out.println("MarkdownUtil.decodeLink(link) = " + MarkdownUtil.decodeLink(link));
     }
 }

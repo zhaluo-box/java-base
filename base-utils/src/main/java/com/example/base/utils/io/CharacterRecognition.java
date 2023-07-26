@@ -1,5 +1,10 @@
 package com.example.base.utils.io;
 
+import cn.hutool.core.net.URLEncodeUtil;
+
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+
 /**
  * 字符识别
  * Created  on 2023/7/19 16:16:34
@@ -44,6 +49,44 @@ public abstract class CharacterRecognition {
         var fromIndex = source.indexOf(from);
         var endIndex = source.indexOf(end, fromIndex);
         return source.substring(fromIndex + from.length(), endIndex);
+    }
+
+    /**
+     * 对链接进行URL 加密
+     *
+     * @param link 连接
+     * @return 加密link
+     */
+    protected static String encodeLink(String link) {
+        return URLEncodeUtil.encode(link, StandardCharsets.UTF_8);
+    }
+
+    /**
+     * 对链接进行URL 解密
+     *
+     * @param link 链接
+     * @return 解密后的链接
+     */
+    protected static String decodeLink(String link) {
+        return URLDecoder.decode(link, StandardCharsets.UTF_8);
+    }
+
+    /**
+     * 替换特殊字符
+     *
+     * @param content   字符内容
+     * @param specChars 特殊字符【】
+     * @return 替换后的数据
+     */
+    protected static String hasSpecCharAndReplace(String content, String... specChars) {
+
+        String temp = content;
+
+        for (String specChar : specChars) {
+            temp = temp.replace(specChar, "");
+        }
+
+        return temp;
     }
 
 }

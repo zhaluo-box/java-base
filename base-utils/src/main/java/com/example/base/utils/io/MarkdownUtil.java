@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.io.*;
+import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,155 @@ public final class MarkdownUtil extends CharacterRecognition {
     final static String LINE_BREAK = "\n";
 
     static final String TAB_CHARACTER = "    ";
+
+    /**
+     * 转换typora markdown 格式为 obsidian 格式
+     *
+     * @param sourcePath    源markdown 文件路径
+     * @param targetPath    目标路径
+     * @param accessoryPath 目标路径的Obsidian 附件文件文件夹名称
+     */
+    public static void TyporaToObsidian(String sourcePath, String targetPath, String accessoryPath) {
+
+        // 扫描文件
+        var fileDesc = FileScanner.scanFileList(sourcePath);
+
+        convert(sourcePath, targetPath, accessoryPath, fileDesc);
+
+    }
+
+    /**
+     * 为了保证MD 能脱离ob 使用会在每个文件夹下面建立一个 附件文件夹
+     *
+     * @param sourcePath    源markdown 文件路径
+     * @param targetPath    目标路径
+     * @param accessoryPath 目标路径的Obsidian 附件文件文件夹名称
+     * @param fileDesc      文件描述
+     */
+    private static void convert(String sourcePath, String targetPath, String accessoryPath, FileDescription fileDesc) {
+
+        // 获取文件绝对路径，生成替换路径
+        var newPath = replacePath(fileDesc.getAbsPath(), sourcePath, targetPath);
+
+        // 如果是文件夹，创建一个文件夹, 获取文件列表逐个处理
+        if (fileDesc.isDir()) {
+            // 如果文件夹不存在，则生成
+            if (!FileUtil.exist(newPath)) {
+                FileUtil.mkdir(newPath);
+            }
+
+            var descriptionList = fileDesc.getDescriptions();
+
+            if (CollectionUtil.isEmpty(descriptionList)) {
+                return;
+            }
+
+            var accessPath = newPath + File.separator + accessoryPath;
+
+            // 如果文件夹下包含MD 文件，则进行生成，否则当前文件夹不建立附件目录
+
+            var hasMd = descriptionList.stream().filter(d -> !d.isDir()).anyMatch(d -> d.getSuffix().equalsIgnoreCase("md"));
+
+            // 如果文件夹不存在，则生成
+            if (!FileUtil.exist(accessPath) && hasMd) {
+                FileUtil.mkdir(accessPath);
+            }
+
+            descriptionList.forEach(desc -> {
+                convert(sourcePath, targetPath, accessoryPath, desc);
+            });
+
+            return;
+        }
+
+        // 如果是一个md 文件，调用处理写入
+        if (fileDesc.getSuffix().equalsIgnoreCase("md")) {
+            try {
+                doConvert(newPath, accessoryPath, fileDesc);
+            } catch (IOException e) {
+                System.err.println("e.getMessage() = " + e.getMessage());
+            }
+        }
+
+        // 如果不是一个md 文件，不做任何处理
+
+    }
+
+    private static void doConvert(String newFileAbsPath, String accessoryPath, FileDescription desc) throws IOException {
+
+        System.out.println("=====filename : " + desc.getAbsPath() + "========start !");
+
+        String fileAbsPath = desc.getAbsPath();
+        var file = new File(fileAbsPath);
+        var parentFile = file.getParentFile();
+        var parentFileAbsolutePath = parentFile.getAbsolutePath();
+        var newFilename = hasSpecCharAndReplace(desc.getFilename(), "?", "？");
+
+        var removeSuffixFilename = newFilename.replace(desc.getSuffix(), "");
+
+        var newFile = new File(newFileAbsPath);
+        var nParentFile = newFile.getParentFile();
+        var nPparentFileAbsolutePath = nParentFile.getAbsolutePath();
+
+        var reader = new BufferedReader(new FileReader(file, StandardCharsets.UTF_8));
+        var writer = new BufferedWriter(new FileWriter(newFile, StandardCharsets.UTF_8));
+
+        String line;
+        int serialNum = 0;
+        while ((line = reader.readLine()) != null) {
+
+            // 如果包含图片与链接特殊符号，则进行提取
+            var fromStatus = hasCharacter(line, IMAGE_SIGN);
+            var endStatus = hasCharacter(line, ")");
+
+            if (!(fromStatus && endStatus)) {
+                writer.write(line + LINE_BREAK);
+                continue;
+            }
+
+            // 增强识别度
+            var linkStr = extractData(line, "(", ")");
+
+            linkStr = decodeLink(linkStr);
+
+            if (StrUtil.isBlank(linkStr) || StrUtil.startWithAnyIgnoreCase(linkStr, "http:", "https:", "note:")) {
+                // 空行也需要写空字符
+                writer.write(line + LINE_BREAK);
+                continue;
+            }
+
+            // link 转换为绝对路径 找到附件，并将附件移动到指定目录
+            // 如果不是绝对路径，
+            String normalLinkStr = linkStr;
+            if (!FileUtil.isAbsolutePath(linkStr)) {
+                System.out.println("linkStr = " + linkStr);
+                normalLinkStr = FileUtil.normalize(parentFileAbsolutePath + File.separator + linkStr);
+                System.out.println("normalLinkStr = " + normalLinkStr);
+            }
+
+            var suffix = FileUtil.getSuffix(normalLinkStr);
+
+            ++serialNum;
+
+            // 转换为 ./accessory/filename+ serialNum + fileSuffix
+            var newLink = accessoryPath + "/" + removeSuffixFilename + serialNum + "." + suffix;
+
+            FileUtil.copy(URLDecoder.decode(normalLinkStr, StandardCharsets.UTF_8), nPparentFileAbsolutePath + File.separator + newLink, true);
+
+            var encodeLink = encodeLink(newLink);
+
+            // 增强识别度
+            var newLine = line.replace("(" + linkStr + ")", "(" + encodeLink + ")");
+
+            writer.write(newLine + LINE_BREAK);
+
+        }
+
+        writer.close();
+        reader.close();
+
+        System.out.println("=====filename : " + desc.getAbsPath() + "========end !");
+    }
 
     /**
      * 处理多个文件 对 图片等path 进行转义
@@ -146,10 +296,10 @@ public final class MarkdownUtil extends CharacterRecognition {
      * 对单个文件进行处理，
      * 复制文件， 读取行数据， 识别（责任链），如果符合规则（图片）， 则进行处理， 提取（） 内部的文字， 进行trim()，进行URL.encode转义
      */
-    public static void handleSingle(String filename, String newFilename) throws IOException {
+    public static void handleSingle(String fileAbsPath, String newFileAbsPath) throws IOException {
 
-        var reader = new BufferedReader(new FileReader(filename, StandardCharsets.UTF_8));
-        var writer = new BufferedWriter(new FileWriter(newFilename, StandardCharsets.UTF_8));
+        var reader = new BufferedReader(new FileReader(fileAbsPath, StandardCharsets.UTF_8));
+        var writer = new BufferedWriter(new FileWriter(newFileAbsPath, StandardCharsets.UTF_8));
 
         String line;
         while ((line = reader.readLine()) != null) {
