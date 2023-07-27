@@ -68,6 +68,8 @@ public abstract class CharacterRecognition {
      * @return 解密后的链接
      */
     protected static String decodeLink(String link) {
+        link = URLDecoder.decode(link, StandardCharsets.UTF_8);
+        link = URLDecoder.decode(link, StandardCharsets.UTF_8);
         return URLDecoder.decode(link, StandardCharsets.UTF_8);
     }
 

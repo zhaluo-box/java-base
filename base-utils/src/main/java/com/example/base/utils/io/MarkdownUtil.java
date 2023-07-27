@@ -136,7 +136,7 @@ public final class MarkdownUtil extends CharacterRecognition {
             }
 
             // 增强识别度
-            var linkStr = extractData(line, "(", ")");
+            var linkStr = extractData(line, "](", ")");
 
             linkStr = decodeLink(linkStr);
 
@@ -151,7 +151,7 @@ public final class MarkdownUtil extends CharacterRecognition {
             String normalLinkStr = linkStr;
             if (!FileUtil.isAbsolutePath(linkStr)) {
                 System.out.println("linkStr = " + linkStr);
-                normalLinkStr = FileUtil.normalize(parentFileAbsolutePath + File.separator + linkStr);
+                normalLinkStr = FileUtil.normalize(parentFileAbsolutePath + File.separator + linkStr.trim());
                 System.out.println("normalLinkStr = " + normalLinkStr);
             }
 
