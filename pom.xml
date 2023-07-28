@@ -15,7 +15,6 @@
         <module>jvm</module>
         <module>juc</module>
         <module>algorithm</module>
-        <module>io</module>
         <module>java8</module>
         <module>base-learn</module>
         <module>open-lib-learn</module>
