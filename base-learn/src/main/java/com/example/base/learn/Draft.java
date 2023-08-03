@@ -7,4 +7,8 @@ package com.example.base.learn;
  */
 public class Draft {
 
+    public static void main(String[] args) {
+     
+    }
+
 }
