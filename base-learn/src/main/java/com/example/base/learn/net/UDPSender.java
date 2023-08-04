@@ -25,7 +25,7 @@ public class UDPSender {
 		   DatagramPacket(byte[] buf, int length, InetAddress address, int port)
 		 */
 
-        String s = "hello udp,im comming!";
+        String s = "hello udp,im coming!";
         byte[] bys = s.getBytes();
         int length = bys.length;
         InetAddress address = InetAddress.getByName("localhost");//发送给当前设备
