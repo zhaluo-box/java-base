@@ -42,6 +42,7 @@ public final class MarkdownUtil extends CharacterRecognition {
         // 扫描文件
         var fileDesc = FileScanner.scanFileList(sourcePath);
 
+        // 进行文件转换
         convert(sourcePath, targetPath, accessoryPath, fileDesc);
 
     }
