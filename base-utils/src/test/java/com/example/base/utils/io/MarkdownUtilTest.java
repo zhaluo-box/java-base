@@ -57,7 +57,7 @@ class MarkdownUtilTest {
     @Test
     @DisplayName("typora md 转 ob md")
     void typoraToObsidianTest() {
-        MarkdownUtil.TyporaToObsidian("D:\\tmp-dir\\docs\\", "D:\\tmp-dir\\ob-back\\docs\\", "images");
+        MarkdownUtil.TyporaToObsidian("D:\\tmp-dir\\待整理\\md_note", "D:\\tmp-dir\\ob-back\\docs\\", "images");
     }
 
     @Test

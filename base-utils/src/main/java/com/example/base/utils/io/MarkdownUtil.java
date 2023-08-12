@@ -127,17 +127,23 @@ public final class MarkdownUtil extends CharacterRecognition {
         int serialNum = 0;
         while ((line = reader.readLine()) != null) {
 
+            // 对于markdown 标准图片资源识别
+            // TODO 2023/8/12 还需要增加typora 缩放后的 <img src=""> 的识别，转换
             // 如果包含图片与链接特殊符号，则进行提取
             var fromStatus = hasCharacter(line, IMAGE_SIGN);
             var endStatus = hasCharacter(line, ")");
+            var imageSign = hasCharacter(line, "![");
 
-            if (!(fromStatus && endStatus)) {
+            if (!(fromStatus && endStatus && imageSign)) {
                 writer.write(line + LINE_BREAK);
                 continue;
             }
 
             // 增强识别度
             var linkStr = extractData(line, "](", ")");
+
+            // 保存原始图片链接，因为下面会解码
+            var originLinkStr = linkStr;
 
             linkStr = decodeLink(linkStr);
 
@@ -163,12 +169,14 @@ public final class MarkdownUtil extends CharacterRecognition {
             // 转换为 ./accessory/filename+ serialNum + fileSuffix
             var newLink = accessoryPath + "/" + removeSuffixFilename + serialNum + "." + suffix;
 
+            System.err.println("newLink = " + newLink);
+
             FileUtil.copy(URLDecoder.decode(normalLinkStr, StandardCharsets.UTF_8), nPparentFileAbsolutePath + File.separator + newLink, true);
 
             var encodeLink = encodeLink(newLink);
 
             // 增强识别度
-            var newLine = line.replace("(" + linkStr + ")", "(" + encodeLink + ")");
+            var newLine = line.replace("(" + originLinkStr + ")", "(" + encodeLink + ")");
 
             writer.write(newLine + LINE_BREAK);
 
@@ -177,7 +185,7 @@ public final class MarkdownUtil extends CharacterRecognition {
         writer.close();
         reader.close();
 
-        System.out.println("=====filename : " + desc.getAbsPath() + "========end !");
+        System.out.println("=====filename : " + desc.getAbsPath() + "========end !" + LINE_BREAK + LINE_BREAK);
     }
 
     /**

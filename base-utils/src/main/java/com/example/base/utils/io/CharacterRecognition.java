@@ -4,6 +4,7 @@ import cn.hutool.core.net.URLEncodeUtil;
 
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Optional;
 
 /**
  * 字符识别
@@ -23,7 +24,8 @@ public abstract class CharacterRecognition {
      * @return 是否含有
      */
     protected static boolean hasCharacter(String line, String character) {
-        return line.contains(character);
+        line = Optional.ofNullable(line).orElse("");
+        return line.trim().contains(character);
     }
 
     /**
