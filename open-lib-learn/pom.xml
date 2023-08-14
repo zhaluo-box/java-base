@@ -121,6 +121,15 @@
         </dependency>
         <!--itextpdf 添加水印， 这个商业需要授权 end！-->
 
+
+        <!-- word添加水印   可以免费商用。但是需要注意的是，免费版本在加载或操作 Word 文档时，要求 Word 文档不超过500个段落，25个表格。    -->
+        <!-- https://mvnrepository.com/artifact/e-iceblue/spire.doc.free -->
+        <dependency>
+            <groupId>e-iceblue</groupId>
+            <artifactId>spire.doc.free</artifactId>
+            <version>5.2.0</version>
+        </dependency>
+
     </dependencies>
 
 
