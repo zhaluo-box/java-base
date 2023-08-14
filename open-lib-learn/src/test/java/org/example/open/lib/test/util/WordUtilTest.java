@@ -1,5 +1,6 @@
-package org.example.open.lib.learn.util;
+package org.example.open.lib.test.util;
 
+import org.example.open.lib.learn.util.WordUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

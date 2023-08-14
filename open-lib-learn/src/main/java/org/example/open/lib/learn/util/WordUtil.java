@@ -36,7 +36,7 @@ public final class WordUtil {
     }
 
     private static void doAddWatermark(OutputStream outputStream, String waterMark, InputStream inputStream) throws FileNotFoundException {
-        try (inputStream) {
+        try (inputStream; outputStream) {
             // Load the Word document
             Document doc = new Document(inputStream);
             TextWatermark textWatermark = new TextWatermark();
@@ -45,6 +45,7 @@ public final class WordUtil {
             textWatermark.setLayout(WatermarkLayout.Diagonal);
             textWatermark.setSemitransparent(true);
             doc.setWatermark(textWatermark);
+
             doc.saveToStream(outputStream, FileFormat.Docx);
         } catch (Exception e) {
             throw new RuntimeException("word 添加水印失败", e);
