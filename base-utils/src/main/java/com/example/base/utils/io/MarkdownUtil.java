@@ -55,7 +55,7 @@ public final class MarkdownUtil extends CharacterRecognition {
      * @param accessoryPath 目标路径的Obsidian 附件文件文件夹名称
      * @param fileDesc      文件描述
      */
-    private static void convert(String sourcePath, String targetPath, String accessoryPath, FileDescription fileDesc) {
+    public static void convert(String sourcePath, String targetPath, String accessoryPath, FileDescription fileDesc) {
 
         // 获取文件绝对路径，生成替换路径
         var newPath = replacePath(fileDesc.getAbsPath(), sourcePath, targetPath);
@@ -76,7 +76,6 @@ public final class MarkdownUtil extends CharacterRecognition {
             var accessPath = newPath + File.separator + accessoryPath;
 
             // 如果文件夹下包含MD 文件，则进行生成，否则当前文件夹不建立附件目录
-
             var hasMd = descriptionList.stream().filter(d -> !d.isDir()).anyMatch(d -> d.getSuffix().equalsIgnoreCase("md"));
 
             // 如果文件夹不存在，则生成
@@ -104,7 +103,7 @@ public final class MarkdownUtil extends CharacterRecognition {
 
     }
 
-    private static void doConvert(String newFileAbsPath, String accessoryPath, FileDescription desc) throws IOException {
+    public static void doConvert(String newFileAbsPath, String accessoryPath, FileDescription desc) throws IOException {
 
         System.out.println("=====filename : " + desc.getAbsPath() + "========start !");
 
@@ -444,7 +443,7 @@ public final class MarkdownUtil extends CharacterRecognition {
      * @param targetDirAbsPath  目标基础文件夹绝对路径
      * @return 替换后的文件绝对路径
      */
-    private static String replacePath(String sourceFileAbsPath, String baseDirAbsPath, String targetDirAbsPath) {
+    public static String replacePath(String sourceFileAbsPath, String baseDirAbsPath, String targetDirAbsPath) {
         return sourceFileAbsPath.replace(baseDirAbsPath, targetDirAbsPath);
     }
 

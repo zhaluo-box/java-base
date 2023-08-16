@@ -5,6 +5,7 @@ import cn.hutool.core.net.URLEncodeUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -54,10 +55,26 @@ class MarkdownUtilTest {
         MarkdownUtil.generateOutlineMD("D:\\tmp-dir\\docs\\", "D:\\tmp-dir\\doc-outline.md", false, false);
     }
 
+    /**
+     * 整个文件夹 转 ob
+     */
     @Test
     @DisplayName("typora md 转 ob md")
     void typoraToObsidianTest() {
         MarkdownUtil.TyporaToObsidian("D:\\tmp-dir\\待整理\\md_note", "D:\\tmp-dir\\ob-back\\docs\\", "images");
+    }
+
+    /**
+     * 单个文件转 ob
+     */
+    @Test
+    @DisplayName("单个文件转 ob")
+    void convert() throws IOException {
+        String filePath = "D:\\tmp-dir\\docs\\待整理\\spring\\Spring Bean Definition learn note.md";
+        String sourceBaseDirPath = "D:\\tmp-dir\\docs\\待整理\\spring";
+        var fileDescription = FileScanner.buildFileDescription(1, new File(filePath), false);
+        var newPath = MarkdownUtil.replacePath(fileDescription.getAbsPath(), sourceBaseDirPath, "D:\\tmp-dir\\ob-back\\docs\\");
+        MarkdownUtil.doConvert(newPath, "images", fileDescription);
     }
 
     @Test

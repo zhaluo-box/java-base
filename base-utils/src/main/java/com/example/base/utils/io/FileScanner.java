@@ -37,18 +37,23 @@ public interface FileScanner {
             return;
         }
         for (File file : files) {
-            var fileDescription = new FileDescription();
             var isDir = file.isDirectory();
-            fileDescription.setFilename(file.getName())
-                           .setDir(isDir)
-                           .setLevel(level)
-                           .setSuffix(FileUtil.getSuffix(file))
-                           .setAbsPath(FileUtil.getAbsolutePath(file));
+            FileDescription fileDescription = buildFileDescription(level, file, isDir);
             descriptions.add(fileDescription);
             if (isDir) {
                 scanFile(fileDescription.getDescriptions(), file.listFiles(), level + 1);
             }
         }
+    }
+
+    public static FileDescription buildFileDescription(int level, File file, boolean isDir) {
+        var fileDescription = new FileDescription();
+        fileDescription.setFilename(file.getName())
+                       .setDir(isDir)
+                       .setLevel(level)
+                       .setSuffix(FileUtil.getSuffix(file))
+                       .setAbsPath(FileUtil.getAbsolutePath(file));
+        return fileDescription;
     }
 
 }
