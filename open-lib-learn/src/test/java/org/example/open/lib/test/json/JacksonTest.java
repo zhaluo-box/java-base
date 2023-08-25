@@ -203,6 +203,15 @@ public class JacksonTest {
         private String type;
     }
 
+    @Test
+    @DisplayName("json 反序列化为 Object.class 对象")
+    public void testJsonToObj() {
+        String json = "{ \"color\" : \"Black\", \"type\" : \"BMW\" }";
+
+        var object = JsonUtil.toObject(json, Object.class);
+        System.out.println(object);
+    }
+
     /**
      * 自定义序列化
      */

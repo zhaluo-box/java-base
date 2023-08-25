@@ -19,8 +19,8 @@ public class ObjectTest {
     @Test
     @DisplayName(("测试两个不同的对象是否相等"))
     public void testDiffObjectEqu() {
-        Long longNumber = new Long(12011L);
-        Integer integerNumber = new Integer("12011");
+        Long longNumber = 12011L;
+        Integer integerNumber = Integer.valueOf("12011");
         System.out.println(Objects.equals(longNumber, integerNumber));
     }
 
