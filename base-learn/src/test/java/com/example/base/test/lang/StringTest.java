@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.regex.Pattern;
@@ -98,6 +99,15 @@ public class StringTest {
         String packageName = "com.example.base.test.lang.StringTest";
         System.out.println("packageName.replace(\".\",\"/\") = " + packageName.replace(".", "/"));
         System.out.println("packageName.replaceAll(\"\\\\.\", \"/\") = " + packageName.replaceAll("\\.", "/"));
+    }
+
+    @Test
+    @DisplayName("文件名排序测试")
+    public void strSortTest() {
+
+        String str[] = new String[] { "01-课程介绍.mp4", "02-内容综述.mp4", "10你好", "101数据库", "21你好", "23十六岁" };
+
+        Arrays.stream(str).sorted().forEach(System.out::println);
     }
 
 }

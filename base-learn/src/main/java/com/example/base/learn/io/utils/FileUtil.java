@@ -89,6 +89,16 @@ public final class FileUtil {
         if (files == null) {
             return;
         }
+
+        //        Stream.of(files).sorted(Comparator.comparing(File::getName)).forEach(file -> {
+        //            var fileDescription = new FileDescription();
+        //            var isDir = file.isDirectory();
+        //            fileDescription.setFilename(file.getName()).setDir(isDir).setLevel(level);
+        //            descriptions.add(fileDescription);
+        //            if (isDir) {
+        //                scanFile(fileDescription.getDescriptions(), file.listFiles(), level + 1);
+        //            }
+        //        });
         for (File file : files) {
             var fileDescription = new FileDescription();
             var isDir = file.isDirectory();

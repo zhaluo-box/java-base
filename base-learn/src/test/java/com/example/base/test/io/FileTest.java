@@ -16,15 +16,15 @@ public class FileTest {
     @Test
     @DisplayName("扫描文件目录并制作markdown")
     public void printDirToMDTest() {
-        var rootFilename = "D:\\learn-video\\140.小马哥讲Spring核心编程思想";
-        FileUtil.printFileDirectoryToMD(rootFilename, "C:\\Users\\wmz\\Documents", "小马哥Spring目录.md");
+        var rootFilename = "D:\\learn-video\\小马哥专栏";
+        FileUtil.printFileDirectoryToMD(rootFilename, "C:\\Users\\wmz\\Documents", "11111.md");
     }
 
     @Test
     @DisplayName("扫描文件目录并制作markdown")
     public void printDirToMDTest2() {
         var rootFilename = "D:\\learn-video";
-        FileUtil.printFileDirectoryToMD(rootFilename, "C:\\Users\\wmz\\Documents", "learn-video.md");
+        FileUtil.printFileDirectoryToMD(rootFilename, "C:\\Users\\wmz\\Documents", "2222.md");
     }
 
     @Test
