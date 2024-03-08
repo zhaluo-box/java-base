@@ -1,6 +1,7 @@
 package com.example.base.utils.io;
 
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.io.FileUtil;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -15,9 +16,11 @@ class EnglishNewWordsParseUtilTest {
 
     @Test
     void parse() throws IOException {
-        var source = "D:\\tmp-dir\\word-list\\words.txt";
+        var source = "D:\\alist-workspace\\word-list\\Lesson 35-36 .txt";
+        var name = FileUtil.getName(source);
+        name = name.replace(".txt", "");
         var suffix = DateUtil.format(new Date(), "yyyy-MM-dd");
-        var target = "D:\\tmp-dir\\word-list\\" + suffix + ".txt";
+        var target = "D:\\alist-workspace\\word-list\\" + name + "-" + suffix + ".txt";
         EnglishNewWordsParseUtil.parse(source, target);
     }
 }
