@@ -53,9 +53,13 @@ public class EnglishNewWordsParseUtil {
             chineseList.add(chinese);
         }
 
+        words.add("\n");
         words.add("---------");
+        words.add("\n");
         words.addAll(chineseList);
+        words.add("\n");
         words.add("---------");
+        words.add("\n");
         words.addAll(phoneticList);
 
         words.forEach(x -> {
