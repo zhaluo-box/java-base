@@ -74,4 +74,12 @@ class EnglishNewWordsParseUtilTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    void testDeviceZero() {
+        var x = 0 / 12;
+        System.out.println(x);
+        var y = 14 % 12;
+        System.out.println("y = " + y);
+    }
 }
