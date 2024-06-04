@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created  on 2024-3-6 16:16:36
@@ -53,13 +54,9 @@ public class EnglishNewWordsParseUtil {
             chineseList.add(chinese);
         }
 
-        words.add("\n");
         words.add("---------");
-        words.add("\n");
         words.addAll(chineseList);
-        words.add("\n");
         words.add("---------");
-        words.add("\n");
         words.addAll(phoneticList);
 
         words.forEach(x -> {
@@ -73,6 +70,24 @@ public class EnglishNewWordsParseUtil {
 
         writer.close();
         reader.close();
+    }
+
+    public static List<String> mergeMultiFile(String path, String desc) throws IOException {
+        var file = new File(path);
+        var words = new ArrayList<String>();
+        try (var reader = new BufferedReader(new FileReader(file, StandardCharsets.UTF_8))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                var strings = line.split("\\[");
+                var pre = strings[0];
+                var pre1 = pre.split(" ");
+                var english = pre1[1];
+                words.add(english);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return words;
     }
 
 }
