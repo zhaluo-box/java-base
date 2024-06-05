@@ -40,25 +40,26 @@ class EnglishNewWordsParseUtilTest {
 
         var list = new ArrayList<String>();
         Arrays.stream(Objects.requireNonNull(dir.listFiles()))
-              .sorted(Comparator.comparing(File::getName))
-              .filter(file -> file.length() > 0 && !file.isDirectory())
-              .forEach(file -> {
-                  var source = file.getAbsolutePath();
-                  var name = FileUtil.getName(source);
-                  System.out.println(source);
-                  var target = "D:\\alist-workspace\\word-list\\parse\\" + name;
-                  try {
-                      list.addAll(EnglishNewWordsParseUtil.mergeMultiFile(source, target));
-                  } catch (Exception e) {
-                      e.printStackTrace();
-                      System.out.println(e.getMessage());
-                  }
-              });
+                .sorted(Comparator.comparing(File::getName))
+                .filter(file -> file.length() > 0 && !file.isDirectory())
+                .forEach(file -> {
+                    var source = file.getAbsolutePath();
+                    var name = FileUtil.getName(source);
+                    System.out.println(source);
+                    var target = "D:\\alist-workspace\\word-list\\parse\\" + name;
+                    try {
+                        list.addAll(EnglishNewWordsParseUtil.mergeMultiFile(source, target));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println(e.getMessage());
+                    }
+                });
 
         FileUtil.writeLines(list, "D:\\alist-workspace\\word-list\\parse\\all.txt", "UTF-8");
     }
 
     @Test
+    @DisplayName("批量解析")
     void batchParse() throws IOException {
         var dirPath = "D:\\alist-workspace\\word-list";
 
@@ -67,20 +68,20 @@ class EnglishNewWordsParseUtilTest {
             return;
         }
         Arrays.stream(Objects.requireNonNull(dir.listFiles()))
-              .sorted(Comparator.comparing(File::getName))
-              .filter(file -> file.length() > 0 && !file.isDirectory())
-              .forEach(file -> {
-                  var source = file.getAbsolutePath();
-                  var name = FileUtil.getName(source);
-                  System.out.println(source);
-                  var target = "D:\\alist-workspace\\word-list\\parse\\" + name;
-                  try {
-                      EnglishNewWordsParseUtil.parse(source, target);
-                  } catch (Exception e) {
-                      e.printStackTrace();
-                      System.out.println(e.getMessage());
-                  }
-              });
+                .sorted(Comparator.comparing(File::getName))
+                .filter(file -> file.length() > 0 && !file.isDirectory())
+                .forEach(file -> {
+                    var source = file.getAbsolutePath();
+                    var name = FileUtil.getName(source);
+                    System.out.println(source);
+                    var target = "D:\\alist-workspace\\word-list\\parse\\" + name;
+                    try {
+                        EnglishNewWordsParseUtil.parse(source, target);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println(e.getMessage());
+                    }
+                });
     }
 
     @Test
